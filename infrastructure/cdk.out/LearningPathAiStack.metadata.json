@@ -1,0 +1,1618 @@
+{
+  "/LearningPathAiStack": [
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAITable": [
+    {
+      "type": "aws:cdk:hasPhysicalName",
+      "data": {
+        "Ref": "LearningPathAITableBD9B6D96"
+      }
+    }
+  ],
+  "/LearningPathAiStack/Default5xxGatewayResponse": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "Default5xxGatewayResponse"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/UnauthorizedGatewayResponse": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UnauthorizedGatewayResponse"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIWebACL": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIWebACL"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIWebACLAssociation": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIWebACLAssociation"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIFrontend": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIFrontend"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIMainBranch": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIMainBranch"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/ApiGatewayUrl": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiGatewayUrl"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/AmplifyAppUrl": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AmplifyAppUrl"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/BootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/CheckBootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CheckBootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAITable/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAITableBD9B6D96"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/ResourceManagerRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ResourceManagerRole265BF90E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/AiAnalyzerRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AiAnalyzerRole48E05D14"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/CareerGoalManagerRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CareerGoalManagerRole30EB12D7"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/AiPlannerRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AiPlannerRoleE7A3A11D"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/DashboardApiRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DashboardApiRoleE8C5313C"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/ProgressTrackerRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ProgressTrackerRole334B43C5"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/SearchServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SearchServiceRole07C1C773"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/ResourceManagerFunction/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ResourceManagerFunction32F92717"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/AiAnalyzerFunction/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AiAnalyzerFunction8FCC4ED2"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/CareerGoalManagerFunction/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CareerGoalManagerFunctionD39E2E6B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/AiPlannerFunction/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AiPlannerFunctionD8CC2CB4"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/DashboardApiFunction/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DashboardApiFunction06980FFF"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/ProgressTrackerFunction/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ProgressTrackerFunctionEBC4284A"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/SearchServiceFunction/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SearchServiceFunctionD4BD2313"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/AiPlannerRealFunction/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AiPlannerRealFunctionC11F7DCB"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/CareerGoalManagerRealFunction/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CareerGoalManagerRealFunction944946EA"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/AiAnalyzerRealFunction/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AiAnalyzerRealFunction16E4A5FF"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/ResourceManagerRealFunction/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ResourceManagerRealFunction9AE6E647"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/DashboardApiRealFunction/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DashboardApiRealFunction1A5327D4"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/ProgressTrackerRealFunction/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ProgressTrackerRealFunctionFEC4365F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/SearchServiceRealFunction/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SearchServiceRealFunction6F9B8AC1"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/StreakResetRule/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "StreakResetRuleA04EBF71"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/StreakResetRule/AllowEventRuleLearningPathAiStackProgressTrackerRealFunctionB4EDC930": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "StreakResetRuleAllowEventRuleLearningPathAiStackProgressTrackerRealFunctionB4EDC930E5D09193"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/AuthorizerRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AuthorizerRole8EA4615E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/AuthAuthorizerFunction/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AuthAuthorizerFunctionC2C29983"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/AuthAuthorizerFunction/LearningPathAiStackLearningPathAIAuthorizerE30E5563:Permissions": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AuthAuthorizerFunctionLearningPathAiStackLearningPathAIAuthorizerE30E5563PermissionsC369A0CE"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiE567CA2F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Endpoint": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiEndpoint2D2A867D"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIAuthorizer/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIAuthorizer5A13512C"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/ContentTypeValidator/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ContentTypeValidatorDDE6A5BD"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIUsagePlan/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIUsagePlanC7AFC121"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/ResourceManagerLogGroup/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ResourceManagerLogGroup278CE3FB"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/AiAnalyzerLogGroup/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AiAnalyzerLogGroupAD76438E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/CareerGoalManagerLogGroup/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CareerGoalManagerLogGroupB2C368FE"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/AiPlannerLogGroup/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AiPlannerLogGroup65C9AF66"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/DashboardApiLogGroup/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DashboardApiLogGroup8A824421"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/ProgressTrackerLogGroup/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ProgressTrackerLogGroup19BB3EE2"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/SearchServiceLogGroup/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SearchServiceLogGroup2B9A3956"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIDashboard/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIDashboard0D6E42C9"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIAlertsTopic/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIAlertsTopic2734107E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/ResourceManagerErrorRateAlarm/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ResourceManagerErrorRateAlarm5B80D0B0"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/AiAnalyzerErrorRateAlarm/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AiAnalyzerErrorRateAlarmC7D0A195"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/CareerGoalManagerErrorRateAlarm/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CareerGoalManagerErrorRateAlarm1E1FAEDE"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/AiPlannerErrorRateAlarm/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AiPlannerErrorRateAlarm1619C275"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/DashboardApiErrorRateAlarm/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DashboardApiErrorRateAlarmE1338438"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/ProgressTrackerErrorRateAlarm/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ProgressTrackerErrorRateAlarmF7C8909A"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/SearchServiceErrorRateAlarm/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SearchServiceErrorRateAlarmB8FBE919"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/CDKMetadata/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CDKMetadata"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/ResourceManagerRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ResourceManagerRoleDefaultPolicy9C54B5D2"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/AiAnalyzerRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AiAnalyzerRoleDefaultPolicyAD121F99"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/CareerGoalManagerRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CareerGoalManagerRoleDefaultPolicy09D7D53F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/AiPlannerRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AiPlannerRoleDefaultPolicy62F4B788"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/DashboardApiRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DashboardApiRoleDefaultPolicy841BE9CB"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/ProgressTrackerRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ProgressTrackerRoleDefaultPolicy4CE0F64B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/SearchServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SearchServiceRoleDefaultPolicyDF40B5BC"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Deployment/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiDeployment909D0499cc0e8063cb067b62aa3ed486f1939200"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/DeploymentStage.prod/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiDeploymentStageprodA20D153B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiOPTIONS6AE68153"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/resources/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiresourcesA3658EE0"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/analyze/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApianalyze8D257739"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/career-goal/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApicareergoal19C5661A"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/learning-plan/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApilearningplan103802D9"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/dashboard/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApidashboard044F18FC"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/progress/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiprogressB15D43E5"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/search/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApisearch5747CAAC"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/resources/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiresourcesOPTIONS63D26B8F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/resources/POST/ApiPermission.LearningPathAiStackLearningPathAIApiADE4CC95.POST..resources": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiresourcesPOSTApiPermissionLearningPathAiStackLearningPathAIApiADE4CC95POSTresources43B355E9"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/resources/POST/ApiPermission.Test.LearningPathAiStackLearningPathAIApiADE4CC95.POST..resources": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiresourcesPOSTApiPermissionTestLearningPathAiStackLearningPathAIApiADE4CC95POSTresources9657ECBE"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/resources/POST/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiresourcesPOSTB5C3D711"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/resources/GET/ApiPermission.LearningPathAiStackLearningPathAIApiADE4CC95.GET..resources": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiresourcesGETApiPermissionLearningPathAiStackLearningPathAIApiADE4CC95GETresources216BA791"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/resources/GET/ApiPermission.Test.LearningPathAiStackLearningPathAIApiADE4CC95.GET..resources": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiresourcesGETApiPermissionTestLearningPathAiStackLearningPathAIApiADE4CC95GETresourcesEB395232"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/resources/GET/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiresourcesGETE8A32B6E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/resources/{id}/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiresourcesid2BFC45A3"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/analyze/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApianalyzeOPTIONS3E2E1C0C"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/analyze/POST/ApiPermission.LearningPathAiStackLearningPathAIApiADE4CC95.POST..analyze": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApianalyzePOSTApiPermissionLearningPathAiStackLearningPathAIApiADE4CC95POSTanalyze392CFF63"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/analyze/POST/ApiPermission.Test.LearningPathAiStackLearningPathAIApiADE4CC95.POST..analyze": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApianalyzePOSTApiPermissionTestLearningPathAiStackLearningPathAIApiADE4CC95POSTanalyze1E80AA42"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/analyze/POST/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApianalyzePOST474D6199"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/career-goal/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApicareergoalOPTIONS4E56BFAF"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/career-goal/POST/ApiPermission.LearningPathAiStackLearningPathAIApiADE4CC95.POST..career-goal": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApicareergoalPOSTApiPermissionLearningPathAiStackLearningPathAIApiADE4CC95POSTcareergoal380FFEE6"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/career-goal/POST/ApiPermission.Test.LearningPathAiStackLearningPathAIApiADE4CC95.POST..career-goal": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApicareergoalPOSTApiPermissionTestLearningPathAiStackLearningPathAIApiADE4CC95POSTcareergoal5C449824"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/career-goal/POST/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApicareergoalPOSTA465AB09"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/career-goal/PUT/ApiPermission.LearningPathAiStackLearningPathAIApiADE4CC95.PUT..career-goal": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApicareergoalPUTApiPermissionLearningPathAiStackLearningPathAIApiADE4CC95PUTcareergoal97CD27DB"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/career-goal/PUT/ApiPermission.Test.LearningPathAiStackLearningPathAIApiADE4CC95.PUT..career-goal": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApicareergoalPUTApiPermissionTestLearningPathAiStackLearningPathAIApiADE4CC95PUTcareergoalA3BDA28C"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/career-goal/PUT/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApicareergoalPUT528E82BF"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/learning-plan/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApilearningplanOPTIONS86668445"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/learning-plan/POST/ApiPermission.LearningPathAiStackLearningPathAIApiADE4CC95.POST..learning-plan": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApilearningplanPOSTApiPermissionLearningPathAiStackLearningPathAIApiADE4CC95POSTlearningplanF4C646B3"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/learning-plan/POST/ApiPermission.Test.LearningPathAiStackLearningPathAIApiADE4CC95.POST..learning-plan": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApilearningplanPOSTApiPermissionTestLearningPathAiStackLearningPathAIApiADE4CC95POSTlearningplan77326343"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/learning-plan/POST/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApilearningplanPOST11CF2F06"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/dashboard/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApidashboardOPTIONSE2136030"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/dashboard/GET/ApiPermission.LearningPathAiStackLearningPathAIApiADE4CC95.GET..dashboard": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApidashboardGETApiPermissionLearningPathAiStackLearningPathAIApiADE4CC95GETdashboard3AE150F3"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/dashboard/GET/ApiPermission.Test.LearningPathAiStackLearningPathAIApiADE4CC95.GET..dashboard": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApidashboardGETApiPermissionTestLearningPathAiStackLearningPathAIApiADE4CC95GETdashboardDC185B35"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/dashboard/GET/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApidashboardGETB2712D61"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/progress/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiprogressOPTIONS8FD3DDCE"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/progress/{id}/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiprogressidBDC57A84"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/search/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApisearchOPTIONSD8D84598"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/search/GET/ApiPermission.LearningPathAiStackLearningPathAIApiADE4CC95.GET..search": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApisearchGETApiPermissionLearningPathAiStackLearningPathAIApiADE4CC95GETsearch4D85FA0B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/search/GET/ApiPermission.Test.LearningPathAiStackLearningPathAIApiADE4CC95.GET..search": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApisearchGETApiPermissionTestLearningPathAiStackLearningPathAIApiADE4CC95GETsearch9E6341F9"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/search/GET/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApisearchGET042FEF93"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/resources/{id}/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiresourcesidOPTIONS415BE505"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/resources/{id}/PUT/ApiPermission.LearningPathAiStackLearningPathAIApiADE4CC95.PUT..resources.{id}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiresourcesidPUTApiPermissionLearningPathAiStackLearningPathAIApiADE4CC95PUTresourcesid6932D1F5"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/resources/{id}/PUT/ApiPermission.Test.LearningPathAiStackLearningPathAIApiADE4CC95.PUT..resources.{id}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiresourcesidPUTApiPermissionTestLearningPathAiStackLearningPathAIApiADE4CC95PUTresourcesid0E9C32AC"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/resources/{id}/PUT/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiresourcesidPUTD898584A"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/resources/{id}/DELETE/ApiPermission.LearningPathAiStackLearningPathAIApiADE4CC95.DELETE..resources.{id}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiresourcesidDELETEApiPermissionLearningPathAiStackLearningPathAIApiADE4CC95DELETEresourcesid703687F2"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/resources/{id}/DELETE/ApiPermission.Test.LearningPathAiStackLearningPathAIApiADE4CC95.DELETE..resources.{id}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiresourcesidDELETEApiPermissionTestLearningPathAiStackLearningPathAIApiADE4CC95DELETEresourcesid231B641E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/resources/{id}/DELETE/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiresourcesidDELETE8F717C5F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/progress/{id}/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiprogressidOPTIONSD75B0EAD"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/progress/{id}/PUT/ApiPermission.LearningPathAiStackLearningPathAIApiADE4CC95.PUT..progress.{id}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiprogressidPUTApiPermissionLearningPathAiStackLearningPathAIApiADE4CC95PUTprogressid0F7ECEF2"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/progress/{id}/PUT/ApiPermission.Test.LearningPathAiStackLearningPathAIApiADE4CC95.PUT..progress.{id}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiprogressidPUTApiPermissionTestLearningPathAiStackLearningPathAIApiADE4CC95PUTprogressid512BDE3D"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/progress/{id}/PUT/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiprogressidPUT48080213"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/progress/{id}/PATCH/ApiPermission.LearningPathAiStackLearningPathAIApiADE4CC95.PATCH..progress.{id}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiprogressidPATCHApiPermissionLearningPathAiStackLearningPathAIApiADE4CC95PATCHprogressid7E77E0C3"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/progress/{id}/PATCH/ApiPermission.Test.LearningPathAiStackLearningPathAIApiADE4CC95.PATCH..progress.{id}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiprogressidPATCHApiPermissionTestLearningPathAiStackLearningPathAIApiADE4CC95PATCHprogressid4F174456"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/LearningPathAiStack/LearningPathAIApi/Default/progress/{id}/PATCH/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearningPathAIApiprogressidPATCH527C677B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, jsii runtime...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ]
+}

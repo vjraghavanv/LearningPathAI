@@ -1,0 +1,117 @@
+/* ============================================================
+   StreakDisplay — study streak card
+   Dark/light mode via CSS custom properties from global.css
+   ============================================================ */
+
+.streak-display {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  padding: 20px 24px;
+  margin-bottom: 24px;
+}
+
+/* ---------- Header ---------- */
+
+.streak-display__header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.streak-display__title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+  margin: 0;
+}
+
+/* ---------- Body ---------- */
+
+.streak-display__body {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.streak-display__icon {
+  font-size: 2rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* ---------- Active streak ---------- */
+
+.streak-display__active {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* ---------- Inactive (zero) streak ---------- */
+
+.streak-display__inactive {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* ---------- Number ---------- */
+
+.streak-display__count {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  line-height: 1;
+}
+
+/* Zero state uses a muted colour so it doesn't look like an achievement */
+.streak-display__count--zero {
+  color: var(--color-text-muted);
+}
+
+/* ---------- Label below the count ---------- */
+
+.streak-display__label {
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+  line-height: 1.3;
+}
+
+/* ============================================================
+   Responsive overrides
+   ============================================================ */
+
+/* Tablet (768px – 1279px) */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .streak-display {
+    padding: 16px 20px;
+  }
+
+  .streak-display__count {
+    font-size: 2rem;
+  }
+}
+
+/* Mobile (< 768px) */
+@media (max-width: 767px) {
+  .streak-display {
+    padding: 14px 16px;
+    margin-bottom: 16px;
+  }
+
+  .streak-display__count {
+    font-size: 1.75rem;
+  }
+
+  .streak-display__icon {
+    font-size: 1.75rem;
+  }
+
+  .streak-display__label {
+    font-size: 0.875rem;
+  }
+}

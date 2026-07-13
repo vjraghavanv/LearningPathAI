@@ -1,0 +1,148 @@
+.priority-resources {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.priority-resources__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 20px 0;
+}
+
+.priority-resources__empty {
+  color: var(--color-text-secondary);
+  font-size: 0.9375rem;
+  margin: 0;
+  padding: 8px 0;
+}
+
+.priority-resources__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.priority-resources__item {
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  transition: box-shadow 0.15s;
+}
+
+.priority-resources__item:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.priority-resources__item-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.priority-resources__link {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: none;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.priority-resources__link:hover {
+  text-decoration: underline;
+}
+
+.priority-resources__score {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 24px;
+  padding: 0 8px;
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 12px;
+  line-height: 1;
+}
+
+.priority-resources__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.priority-resources__type {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
+.priority-resources__difficulty {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
+.priority-resources__difficulty--beginner {
+  color: var(--color-success);
+  background: color-mix(in srgb, var(--color-success) 12%, transparent);
+}
+
+.priority-resources__difficulty--intermediate {
+  color: var(--color-warning);
+  background: color-mix(in srgb, var(--color-warning) 12%, transparent);
+}
+
+.priority-resources__difficulty--advanced {
+  color: var(--color-error);
+  background: color-mix(in srgb, var(--color-error) 12%, transparent);
+}
+
+/* ── Responsive breakpoints ──────────────────────────────── */
+
+@media (max-width: 768px) {
+  .priority-resources {
+    padding: 16px;
+  }
+
+  .priority-resources__item {
+    padding: 12px 14px;
+  }
+}
+
+@media (max-width: 375px) {
+  .priority-resources {
+    padding: 12px;
+  }
+
+  .priority-resources__title {
+    font-size: 1rem;
+  }
+
+  .priority-resources__item-header {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .priority-resources__score {
+    align-self: flex-start;
+  }
+}

@@ -1,0 +1,433 @@
+<mxfile host="app.diagrams.net" modified="2026-07-13T00:00:00Z" agent="Kiro" version="21.0.0" type="device">
+  <diagram name="LearningPath AI — AWS Architecture" id="lp-ai-arch-v2">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title-bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#232F3E;strokeColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1900" height="52" as="geometry"/>
+        </mxCell>
+        <mxCell id="title-text" value="LearningPath AI — AWS Serverless Architecture  ·  React + Vite · Python 3.11 Lambda · DynamoDB Single-Table · Bedrock Nova Lite · CDK IaC" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=15;fontStyle=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="100" y="0" width="1700" height="52" as="geometry"/>
+        </mxCell>
+
+
+        <!-- ═══════════ ROW 1: USER → AMPLIFY → API GW + WAF → COGNITO ═══════════ -->
+        <!-- Row 1 background band -->
+        <mxCell id="row1-bg" value="① Client &amp; Presentation" style="text;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=8;fontSize=10;fontStyle=1;fontColor=#555555;strokeColor=#dddddd;fillColor=#fafafa;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="70" width="1860" height="130" as="geometry"/>
+        </mxCell>
+
+        <!-- User -->
+        <mxCell id="user-icon" value="User / Browser" style="shape=mxgraph.aws4.user;fillColor=#232F3E;strokeColor=#ffffff;fontColor=#232F3E;fontSize=10;fontStyle=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="60" y="95" width="56" height="56" as="geometry"/>
+        </mxCell>
+
+        <!-- Amplify -->
+        <mxCell id="amplify-icon" value="AWS Amplify" style="sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=1;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.amplify;" vertex="1" parent="1">
+          <mxGeometry x="270" y="85" width="68" height="68" as="geometry"/>
+        </mxCell>
+        <mxCell id="amplify-sub" value="React + Vite SPA · Static Hosting + CDN · Dark/Light Mode · Responsive (375–1280px+)" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="210" y="162" width="190" height="28" as="geometry"/>
+        </mxCell>
+
+        <!-- API Gateway -->
+        <mxCell id="apigw-icon" value="API Gateway" style="sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#8C4FFF;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=1;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.api_gateway;" vertex="1" parent="1">
+          <mxGeometry x="560" y="85" width="68" height="68" as="geometry"/>
+        </mxCell>
+        <mxCell id="apigw-sub" value="REST API · Usage Plans · 100 req/min · CORS · HTTP 401/415/429" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="500" y="162" width="190" height="28" as="geometry"/>
+        </mxCell>
+
+        <!-- WAF -->
+        <mxCell id="waf-icon" value="AWS WAF" style="sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#DD344C;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=1;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.waf;" vertex="1" parent="1">
+          <mxGeometry x="700" y="88" width="60" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Cognito / Auth Authorizer -->
+        <mxCell id="cognito-icon" value="Cognito / JWT&#xa;Authorizer" style="sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#DD344C;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=1;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cognito;" vertex="1" parent="1">
+          <mxGeometry x="830" y="88" width="60" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="cognito-sub" value="JWT validation · HTTP 401 on failure" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="790" y="162" width="150" height="20" as="geometry"/>
+        </mxCell>
+
+
+        <!-- ═══════════ ROW 2: LAMBDA FUNCTIONS ═══════════ -->
+        <mxCell id="row2-bg" value="② Compute — AWS Lambda Functions (Python 3.11)" style="text;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=8;fontSize=10;fontStyle=1;fontColor=#cc5500;strokeColor=#ED7100;fillColor=#FFF8F0;rounded=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="20" y="220" width="1860" height="270" as="geometry"/>
+        </mxCell>
+
+        <!-- resource_manager -->
+        <mxCell id="fn-rm" value="resource_manager&#xa;─────────────────&#xa;POST /resources&#xa;GET  /resources&#xa;PUT  /resources/{id}&#xa;DEL  /resources/{id}&#xa;─────────────────&#xa;Validates: title, url, type&#xa;HTTP 400 missing fields&#xa;HTTP 403 ownership" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7100;strokeColor=#cc5500;fontColor=#ffffff;fontSize=9;fontStyle=0;align=left;spacingLeft=8;spacingTop=4;" vertex="1" parent="1">
+          <mxGeometry x="40" y="255" width="195" height="210" as="geometry"/>
+        </mxCell>
+
+        <!-- ai_analyzer -->
+        <mxCell id="fn-aa" value="ai_analyzer&#xa;─────────────────&#xa;POST /analyze&#xa;─────────────────&#xa;Invoked after resource save&#xa;Bedrock Nova Lite enrichment&#xa;Extracts: priority, summary,&#xa;skills, difficulty, estimatedTime&#xa;whyLearnNow, recommendedWeek&#xa;30s timeout · null-safe on error" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7100;strokeColor=#cc5500;fontColor=#ffffff;fontSize=9;fontStyle=0;align=left;spacingLeft=8;spacingTop=4;" vertex="1" parent="1">
+          <mxGeometry x="260" y="255" width="195" height="210" as="geometry"/>
+        </mxCell>
+
+        <!-- career_goal_manager -->
+        <mxCell id="fn-cg" value="career_goal_manager&#xa;─────────────────&#xa;POST /career-goal&#xa;PUT  /career-goal&#xa;─────────────────&#xa;Validates: skillLevel enum&#xa;weeklyHours 1–168&#xa;pace: Slow/Moderate/Fast&#xa;careerGoal ≤ 200 chars&#xa;Triggers AI Planner on save" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7100;strokeColor=#cc5500;fontColor=#ffffff;fontSize=9;fontStyle=0;align=left;spacingLeft=8;spacingTop=4;" vertex="1" parent="1">
+          <mxGeometry x="480" y="255" width="195" height="210" as="geometry"/>
+        </mxCell>
+
+        <!-- ai_planner -->
+        <mxCell id="fn-ap" value="ai_planner&#xa;─────────────────&#xa;POST /learning-plan&#xa;─────────────────&#xa;Bedrock plan generation&#xa;60s timeout · 503 on error&#xa;7+ day daily schedule&#xa;Assigns priorityScore 0–100&#xa;Excludes: Completed / Skipped&#xa;Preserves last plan on failure" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7100;strokeColor=#cc5500;fontColor=#ffffff;fontSize=9;fontStyle=0;align=left;spacingLeft=8;spacingTop=4;" vertex="1" parent="1">
+          <mxGeometry x="700" y="255" width="195" height="210" as="geometry"/>
+        </mxCell>
+
+        <!-- dashboard_api -->
+        <mxCell id="fn-db" value="dashboard_api&#xa;─────────────────&#xa;GET /dashboard&#xa;─────────────────&#xa;Aggregated response ≤ 3s&#xa;Today task · completion %&#xa;Study streak · weekly progress&#xa;Priority resources · roadmap&#xa;Certifications · projects&#xa;null fields if no active plan" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7100;strokeColor=#cc5500;fontColor=#ffffff;fontSize=9;fontStyle=0;align=left;spacingLeft=8;spacingTop=4;" vertex="1" parent="1">
+          <mxGeometry x="920" y="255" width="195" height="210" as="geometry"/>
+        </mxCell>
+
+        <!-- progress_tracker -->
+        <mxCell id="fn-pt" value="progress_tracker&#xa;─────────────────&#xa;PUT /progress/{id}&#xa;─────────────────&#xa;Status: Not Started / In Progress&#xa;Completed / Skipped&#xa;Records completion timestamp&#xa;Increments streak (new day)&#xa;Milestones at 25/50/75/100%&#xa;Triggers AI Planner on complete" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7100;strokeColor=#cc5500;fontColor=#ffffff;fontSize=9;fontStyle=0;align=left;spacingLeft=8;spacingTop=4;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="255" width="195" height="210" as="geometry"/>
+        </mxCell>
+
+        <!-- search_service -->
+        <mxCell id="fn-ss" value="search_service&#xa;─────────────────&#xa;GET /search&#xa;─────────────────&#xa;AND-logic across all filters&#xa;technology · difficulty&#xa;resourceType · certTag&#xa;skillTag · free-text tag&#xa;Empty list → HTTP 200&#xa;Bad filter key → HTTP 400 · ≤2s" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7100;strokeColor=#cc5500;fontColor=#ffffff;fontSize=9;fontStyle=0;align=left;spacingLeft=8;spacingTop=4;" vertex="1" parent="1">
+          <mxGeometry x="1360" y="255" width="195" height="210" as="geometry"/>
+        </mxCell>
+
+        <!-- pretty_printer -->
+        <mxCell id="fn-pp" value="pretty_printer  [shared util]&#xa;─────────────────&#xa;DynamoDB record → Bedrock JSON&#xa;Round-trip serialization guarantee&#xa;Used by: ai_analyzer + ai_planner" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3cd;strokeColor=#d79b00;fontColor=#333333;fontSize=9;fontStyle=0;align=left;spacingLeft=8;spacingTop=4;dashed=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1580" y="310" width="270" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="fn-auth-label" value="auth_authorizer&#xa;Lambda Authorizer&#xa;JWT validation&#xa;HTTP 401 on failure" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DD344C;strokeColor=#aa1122;fontColor=#ffffff;fontSize=9;fontStyle=0;align=left;spacingLeft=8;spacingTop=4;" vertex="1" parent="1">
+          <mxGeometry x="1580" y="430" width="200" height="80" as="geometry"/>
+        </mxCell>
+
+
+        <!-- ═══════════ ROW 3: DATA + AI SERVICES ═══════════ -->
+        <mxCell id="row3-dynamo-bg" value="③ Data — Amazon DynamoDB" style="text;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=8;fontSize=10;fontStyle=1;fontColor=#8b008b;strokeColor=#C925D1;fillColor=#FDF0FF;rounded=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="20" y="520" width="760" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="dynamo-icon" value="Amazon DynamoDB" style="sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#C925D1;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=1;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.dynamodb;" vertex="1" parent="1">
+          <mxGeometry x="50" y="555" width="78" height="78" as="geometry"/>
+        </mxCell>
+        <mxCell id="dynamo-detail" value="Table: LearningPathAI&#xa;PK: userId (String) · SK: resourceId (String)&#xa;On-demand capacity · PITR enabled · Deletion protection (prod)&#xa;──────────────────────────────&#xa;RESOURCE#&lt;uuid&gt;    — learning resource + aiMetadata&#xa;PROFILE#career_goal — career goal profile&#xa;PLAN#active         — current learning plan&#xa;PROGRESS#&lt;id&gt;#&lt;ts&gt;  — status audit entry&#xa;MILESTONE#&lt;pct&gt;    — 25/50/75/100% events&#xa;STREAK#current      — streak metadata" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=9;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="150" y="548" width="610" height="168" as="geometry"/>
+        </mxCell>
+
+        <!-- AI / Bedrock zone -->
+        <mxCell id="row3-bedrock-bg" value="④ AI — Amazon Bedrock" style="text;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=8;fontSize=10;fontStyle=1;fontColor=#006b5a;strokeColor=#01A88D;fillColor=#F0FDF9;rounded=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="800" y="520" width="760" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="bedrock-icon" value="Amazon Bedrock" style="sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#01A88D;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=1;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.bedrock;" vertex="1" parent="1">
+          <mxGeometry x="830" y="555" width="78" height="78" as="geometry"/>
+        </mxCell>
+        <mxCell id="bedrock-detail" value="Model: Nova Lite v1 · Pay-per-token&#xa;──────────────────────────────&#xa;Analyzer prompt response schema:&#xa;  priorityScore (0-100) · summary · skills[]&#xa;  difficulty · estimatedTime · whyLearnNow · recommendedWeek&#xa;Planner prompt response schema:&#xa;  dailySchedule[]{day, resourceId, estimatedDuration, recommendationReason}&#xa;  weeklyRoadmap[] · recommendedProjects[] · certificationRecommendations[]&#xa;  estimatedCompletionTimeline · careerGoalSnapshot" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=9;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="930" y="548" width="610" height="168" as="geometry"/>
+        </mxCell>
+
+
+        <!-- ═══════════ ROW 4: OBSERVABILITY + IaC ═══════════ -->
+        <mxCell id="row4-obs-bg" value="⑤ Observability" style="text;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=8;fontSize=10;fontStyle=1;fontColor=#aa0055;strokeColor=#E7157B;fillColor=#FFF5FA;rounded=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="20" y="765" width="840" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="cw-icon" value="CloudWatch" style="sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=1;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudwatch;" vertex="1" parent="1">
+          <mxGeometry x="50" y="800" width="68" height="68" as="geometry"/>
+        </mxCell>
+        <mxCell id="cw-detail" value="Structured JSON logs per invocation: userId · path · statusCode · durationMs · correlationId&#xa;Error log fields: errorType · sanitized errorMessage · correlationId&#xa;Dashboard metrics: Lambda invocations · error rate · P95 duration · API GW 4xx/5xx · DDB RCU/WCU&#xa;Alarm: Lambda error rate &gt; 5% over 5-min window → SNS" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=9;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="140" y="798" width="690" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="sns-icon" value="SNS Topic&#xa;(Alerts)" style="sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=1;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sns;" vertex="1" parent="1">
+          <mxGeometry x="760" y="800" width="60" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- IaC / CDK zone -->
+        <mxCell id="row4-iac-bg" value="⑥ Infrastructure as Code — AWS CDK (Python)" style="text;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=8;fontSize=10;fontStyle=1;fontColor=#444444;strokeColor=#888888;fillColor=#f5f5f5;rounded=1;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="765" width="840" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="cdk-detail" value="Single cdk deploy provisions all resources:&#xa;  DynamoDB table (on-demand, PITR, deletion protection in prod)&#xa;  Lambda functions (reserved concurrency, 30-day log retention, env vars for TABLE_NAME + MODEL_ID)&#xa;  API Gateway (WAF integration, usage plans, rate limits)&#xa;  AWS Amplify app hosting&#xa;  IAM roles (least-privilege per function)&#xa;  CloudWatch log groups + dashboards + alarms&#xa;  SNS topic for alarm notifications&#xa;Outputs: API_GATEWAY_URL · AMPLIFY_APP_URL" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=9;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="900" y="790" width="800" height="135" as="geometry"/>
+        </mxCell>
+        <mxCell id="iam-icon" value="IAM Roles&#xa;Least Privilege" style="sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#DD344C;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=1;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.identity_and_access_management;" vertex="1" parent="1">
+          <mxGeometry x="1750" y="798" width="60" height="60" as="geometry"/>
+        </mxCell>
+
+
+        <!-- ═══════════ ARROWS — ROW 1 HORIZONTAL FLOW ═══════════ -->
+        <mxCell id="arr-user-amp" value="HTTPS" style="endArrow=block;endFill=1;html=1;strokeColor=#E7157B;fontColor=#E7157B;fontSize=9;fontStyle=1;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="120" y="123" as="sourcePoint"/>
+            <mxPoint x="268" y="123" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-amp-apigw" value="REST API calls" style="endArrow=block;endFill=1;html=1;strokeColor=#8C4FFF;fontColor=#8C4FFF;fontSize=9;fontStyle=1;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="119" as="sourcePoint"/>
+            <mxPoint x="558" y="119" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-apigw-waf" value="Filter" style="endArrow=block;endFill=1;html=1;strokeColor=#DD344C;fontColor=#DD344C;fontSize=9;fontStyle=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="630" y="118" as="sourcePoint"/>
+            <mxPoint x="698" y="118" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-apigw-cognito" value="Authorize JWT" style="endArrow=block;endFill=1;html=1;strokeColor=#DD344C;fontColor=#DD344C;fontSize=9;fontStyle=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="762" y="118" as="sourcePoint"/>
+            <mxPoint x="828" y="118" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ═══════════ ARROWS — ROW 1 → ROW 2 (API GW → Lambdas) ═══════════ -->
+        <!-- API GW drops down to lambda row — fan out via vertical lines -->
+        <mxCell id="arr-apigw-rm" value="route" style="endArrow=block;endFill=1;html=1;strokeColor=#ED7100;fontColor=#ED7100;fontSize=8;curved=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="594" y="155" as="sourcePoint"/>
+            <mxPoint x="138" y="253" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="594" y="220"/>
+              <mxPoint x="138" y="220"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-apigw-aa" value="route" style="endArrow=block;endFill=1;html=1;strokeColor=#ED7100;fontColor=#ED7100;fontSize=8;curved=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="594" y="155" as="sourcePoint"/>
+            <mxPoint x="358" y="253" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="594" y="220"/>
+              <mxPoint x="358" y="220"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-apigw-cg" value="route" style="endArrow=block;endFill=1;html=1;strokeColor=#ED7100;fontColor=#ED7100;fontSize=8;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="594" y="155" as="sourcePoint"/>
+            <mxPoint x="578" y="253" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="594" y="220"/>
+              <mxPoint x="578" y="220"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-apigw-ap" value="route" style="endArrow=block;endFill=1;html=1;strokeColor=#ED7100;fontColor=#ED7100;fontSize=8;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="594" y="155" as="sourcePoint"/>
+            <mxPoint x="798" y="253" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="594" y="220"/>
+              <mxPoint x="798" y="220"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-apigw-db" value="route" style="endArrow=block;endFill=1;html=1;strokeColor=#ED7100;fontColor=#ED7100;fontSize=8;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="594" y="155" as="sourcePoint"/>
+            <mxPoint x="1018" y="253" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="594" y="220"/>
+              <mxPoint x="1018" y="220"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-apigw-pt" value="route" style="endArrow=block;endFill=1;html=1;strokeColor=#ED7100;fontColor=#ED7100;fontSize=8;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="594" y="155" as="sourcePoint"/>
+            <mxPoint x="1238" y="253" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="594" y="220"/>
+              <mxPoint x="1238" y="220"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-apigw-ss" value="route" style="endArrow=block;endFill=1;html=1;strokeColor=#ED7100;fontColor=#ED7100;fontSize=8;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="594" y="155" as="sourcePoint"/>
+            <mxPoint x="1458" y="253" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="594" y="220"/>
+              <mxPoint x="1458" y="220"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+
+        <!-- ═══════════ ARROWS — INTER-LAMBDA TRIGGERS ═══════════ -->
+        <!-- resource_manager → ai_analyzer (trigger on create) -->
+        <mxCell id="arr-rm-aa" value="trigger on create" style="endArrow=block;endFill=1;html=1;strokeColor=#ED7100;fontColor=#ED7100;fontSize=9;fontStyle=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="237" y="360" as="sourcePoint"/>
+            <mxPoint x="259" y="360" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <!-- career_goal_manager → ai_planner -->
+        <mxCell id="arr-cg-ap" value="trigger on save" style="endArrow=block;endFill=1;html=1;strokeColor=#ED7100;fontColor=#ED7100;fontSize=9;fontStyle=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="677" y="360" as="sourcePoint"/>
+            <mxPoint x="699" y="360" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <!-- progress_tracker → ai_planner (trigger on complete) -->
+        <mxCell id="arr-pt-ap" value="trigger on complete" style="endArrow=block;endFill=1;html=1;strokeColor=#ED7100;fontColor=#ED7100;fontSize=9;fontStyle=1;curved=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1138" y="330" as="sourcePoint"/>
+            <mxPoint x="897" y="330" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ═══════════ ARROWS — ROW 2 → ROW 3 (Lambdas → DynamoDB) ═══════════ -->
+        <mxCell id="arr-rm-dynamo" value="CRUD" style="endArrow=block;endFill=1;html=1;strokeColor=#C925D1;fontColor=#C925D1;fontSize=9;fontStyle=1;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="138" y="467" as="sourcePoint"/>
+            <mxPoint x="300" y="518" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="138" y="500"/>
+              <mxPoint x="300" y="500"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-aa-dynamo" value="merge metadata" style="endArrow=block;endFill=1;html=1;strokeColor=#C925D1;fontColor=#C925D1;fontSize=9;fontStyle=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="358" y="467" as="sourcePoint"/>
+            <mxPoint x="340" y="518" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="358" y="500"/>
+              <mxPoint x="340" y="500"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-cg-dynamo" value="persist profile" style="endArrow=block;endFill=1;html=1;strokeColor=#C925D1;fontColor=#C925D1;fontSize=9;fontStyle=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="578" y="467" as="sourcePoint"/>
+            <mxPoint x="390" y="518" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="578" y="500"/>
+              <mxPoint x="390" y="500"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-ap-dynamo" value="persist plan" style="endArrow=block;endFill=1;html=1;strokeColor=#C925D1;fontColor=#C925D1;fontSize=9;fontStyle=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="798" y="467" as="sourcePoint"/>
+            <mxPoint x="450" y="518" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="798" y="500"/>
+              <mxPoint x="450" y="500"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-db-dynamo" value="read" style="endArrow=block;endFill=1;html=1;strokeColor=#C925D1;fontColor=#C925D1;fontSize=9;fontStyle=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1018" y="467" as="sourcePoint"/>
+            <mxPoint x="510" y="518" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="1018" y="500"/>
+              <mxPoint x="510" y="500"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-pt-dynamo" value="write status/streak/milestone" style="endArrow=block;endFill=1;html=1;strokeColor=#C925D1;fontColor=#C925D1;fontSize=9;fontStyle=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1238" y="467" as="sourcePoint"/>
+            <mxPoint x="570" y="518" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="1238" y="500"/>
+              <mxPoint x="570" y="500"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-ss-dynamo" value="filter query" style="endArrow=block;endFill=1;html=1;strokeColor=#C925D1;fontColor=#C925D1;fontSize=9;fontStyle=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1458" y="467" as="sourcePoint"/>
+            <mxPoint x="620" y="518" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="1458" y="500"/>
+              <mxPoint x="620" y="500"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ═══════════ ARROWS — ROW 2 → ROW 3 (ai_analyzer + ai_planner → Bedrock) ═══════════ -->
+        <mxCell id="arr-aa-bedrock" value="InvokeModel (analyze)" style="endArrow=block;endFill=1;html=1;strokeColor=#01A88D;fontColor=#01A88D;fontSize=9;fontStyle=1;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="358" y="467" as="sourcePoint"/>
+            <mxPoint x="930" y="518" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="358" y="508"/>
+              <mxPoint x="930" y="508"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-ap-bedrock" value="InvokeModel (plan)" style="endArrow=block;endFill=1;html=1;strokeColor=#01A88D;fontColor=#01A88D;fontSize=9;fontStyle=1;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="798" y="467" as="sourcePoint"/>
+            <mxPoint x="970" y="518" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="798" y="510"/>
+              <mxPoint x="970" y="510"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ═══════════ ARROWS — ROW 2 → ROW 4 (Lambdas → CloudWatch logs) ═══════════ -->
+        <mxCell id="arr-lambda-cw" value="Structured JSON logs · correlationId" style="endArrow=block;endFill=1;html=1;strokeColor=#E7157B;fontColor=#E7157B;fontSize=9;fontStyle=1;dashed=1;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="467" as="sourcePoint"/>
+            <mxPoint x="200" y="763" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="800" y="735"/>
+              <mxPoint x="200" y="735"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- CloudWatch → SNS -->
+        <mxCell id="arr-cw-sns" value="Alarm: &gt;5% errors / 5min" style="endArrow=block;endFill=1;html=1;strokeColor=#E7157B;fontColor=#E7157B;fontSize=9;fontStyle=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="720" y="834" as="sourcePoint"/>
+            <mxPoint x="758" y="834" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- pretty_printer ↔ ai_analyzer -->
+        <mxCell id="arr-pp-aa" value="round-trip" style="endArrow=open;startArrow=open;html=1;strokeColor=#d79b00;fontColor=#d79b00;fontSize=9;dashed=1;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1580" y="340" as="sourcePoint"/>
+            <mxPoint x="457" y="340" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+
+        <!-- ═══════════ LEGEND ═══════════ -->
+        <mxCell id="legend-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cccccc;" vertex="1" parent="1">
+          <mxGeometry x="1580" y="570" width="280" height="320" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend-title" value="Legend" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="1598" y="578" width="100" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="l1b" value="" style="rounded=1;fillColor=#E7157B;strokeColor=#E7157B;" vertex="1" parent="1"><mxGeometry x="1598" y="608" width="14" height="14" as="geometry"/></mxCell>
+        <mxCell id="l1t" value="Frontend (Amplify) / Observability" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;" vertex="1" parent="1"><mxGeometry x="1620" y="606" width="220" height="18" as="geometry"/></mxCell>
+        <mxCell id="l2b" value="" style="rounded=1;fillColor=#8C4FFF;strokeColor=#8C4FFF;" vertex="1" parent="1"><mxGeometry x="1598" y="632" width="14" height="14" as="geometry"/></mxCell>
+        <mxCell id="l2t" value="API Gateway / Networking" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;" vertex="1" parent="1"><mxGeometry x="1620" y="630" width="220" height="18" as="geometry"/></mxCell>
+        <mxCell id="l3b" value="" style="rounded=1;fillColor=#ED7100;strokeColor=#ED7100;" vertex="1" parent="1"><mxGeometry x="1598" y="656" width="14" height="14" as="geometry"/></mxCell>
+        <mxCell id="l3t" value="Compute — Lambda (Python 3.11)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;" vertex="1" parent="1"><mxGeometry x="1620" y="654" width="220" height="18" as="geometry"/></mxCell>
+        <mxCell id="l4b" value="" style="rounded=1;fillColor=#01A88D;strokeColor=#01A88D;" vertex="1" parent="1"><mxGeometry x="1598" y="680" width="14" height="14" as="geometry"/></mxCell>
+        <mxCell id="l4t" value="AI — Amazon Bedrock Nova Lite" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;" vertex="1" parent="1"><mxGeometry x="1620" y="678" width="220" height="18" as="geometry"/></mxCell>
+        <mxCell id="l5b" value="" style="rounded=1;fillColor=#C925D1;strokeColor=#C925D1;" vertex="1" parent="1"><mxGeometry x="1598" y="704" width="14" height="14" as="geometry"/></mxCell>
+        <mxCell id="l5t" value="Data — DynamoDB Single-Table" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;" vertex="1" parent="1"><mxGeometry x="1620" y="702" width="220" height="18" as="geometry"/></mxCell>
+        <mxCell id="l6b" value="" style="rounded=1;fillColor=#DD344C;strokeColor=#DD344C;" vertex="1" parent="1"><mxGeometry x="1598" y="728" width="14" height="14" as="geometry"/></mxCell>
+        <mxCell id="l6t" value="Security (WAF · Cognito · IAM)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;" vertex="1" parent="1"><mxGeometry x="1620" y="726" width="220" height="18" as="geometry"/></mxCell>
+        <mxCell id="l7b" value="" style="rounded=1;fillColor=#fff3cd;strokeColor=#d79b00;dashed=1;" vertex="1" parent="1"><mxGeometry x="1598" y="752" width="14" height="14" as="geometry"/></mxCell>
+        <mxCell id="l7t" value="Shared Utility / Round-trip Serializer" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;" vertex="1" parent="1"><mxGeometry x="1620" y="750" width="220" height="18" as="geometry"/></mxCell>
+        <mxCell id="l8b" value="" style="rounded=1;fillColor=#f5f5f5;strokeColor=#888888;dashed=1;" vertex="1" parent="1"><mxGeometry x="1598" y="776" width="14" height="14" as="geometry"/></mxCell>
+        <mxCell id="l8t" value="IaC — AWS CDK Python" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;" vertex="1" parent="1"><mxGeometry x="1620" y="774" width="220" height="18" as="geometry"/></mxCell>
+        <mxCell id="l9b" value="" style="endArrow=block;endFill=1;html=1;strokeColor=#ED7100;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="1598" y="808" as="sourcePoint"/><mxPoint x="1640" y="808" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="l9t" value="Sync call / trigger" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;" vertex="1" parent="1"><mxGeometry x="1648" y="800" width="180" height="18" as="geometry"/></mxCell>
+        <mxCell id="l10b" value="" style="endArrow=block;endFill=1;html=1;strokeColor=#E7157B;dashed=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="1598" y="832" width="0" height="0" as="sourcePoint"/><mxPoint x="1640" y="832" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="l10t" value="Async / log emission" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;" vertex="1" parent="1"><mxGeometry x="1648" y="824" width="180" height="18" as="geometry"/></mxCell>
+        <mxCell id="l11b" value="" style="endArrow=open;startArrow=open;html=1;strokeColor=#d79b00;dashed=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="1598" y="856" as="sourcePoint"/><mxPoint x="1640" y="856" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="l11t" value="Round-trip serialization" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;" vertex="1" parent="1"><mxGeometry x="1648" y="848" width="180" height="18" as="geometry"/></mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

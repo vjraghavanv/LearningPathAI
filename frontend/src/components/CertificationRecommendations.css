@@ -1,0 +1,110 @@
+.cert-recommendations {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ── Section (certs / projects) ──────────────────────────── */
+
+.cert-recommendations__section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cert-recommendations__section--projects {
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border);
+}
+
+.cert-recommendations__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.cert-recommendations__empty {
+  color: var(--color-text-secondary);
+  font-size: 0.9375rem;
+  margin: 0;
+  padding: 4px 0;
+}
+
+/* ── List & items ────────────────────────────────────────── */
+
+.cert-recommendations__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cert-recommendations__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-raised);
+  transition: box-shadow 0.15s;
+}
+
+.cert-recommendations__item:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+.cert-recommendations__item--cert {
+  border-left: 3px solid var(--color-accent);
+}
+
+.cert-recommendations__item--project {
+  border-left: 3px solid var(--color-warning);
+}
+
+.cert-recommendations__icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  line-height: 1.5;
+}
+
+.cert-recommendations__text {
+  font-size: 0.9375rem;
+  color: var(--color-text-primary);
+  line-height: 1.5;
+}
+
+/* ── Responsive breakpoints ──────────────────────────────── */
+
+@media (max-width: 768px) {
+  .cert-recommendations {
+    padding: 16px;
+    gap: 20px;
+  }
+
+  .cert-recommendations__section--projects {
+    padding-top: 18px;
+  }
+}
+
+@media (max-width: 375px) {
+  .cert-recommendations {
+    padding: 12px;
+  }
+
+  .cert-recommendations__title {
+    font-size: 1rem;
+  }
+
+  .cert-recommendations__item {
+    padding: 10px 12px;
+  }
+}

@@ -1,0 +1,4289 @@
+{
+ "Description": "LearningPath AI — serverless AWS-native learning productivity application",
+ "Resources": {
+  "LearningPathAITableBD9B6D96": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "userId",
+      "AttributeType": "S"
+     },
+     {
+      "AttributeName": "resourceId",
+      "AttributeType": "S"
+     }
+    ],
+    "BillingMode": "PAY_PER_REQUEST",
+    "DeletionProtectionEnabled": false,
+    "KeySchema": [
+     {
+      "AttributeName": "userId",
+      "KeyType": "HASH"
+     },
+     {
+      "AttributeName": "resourceId",
+      "KeyType": "RANGE"
+     }
+    ],
+    "PointInTimeRecoverySpecification": {
+     "PointInTimeRecoveryEnabled": true
+    },
+    "TableName": "LearningPathAI"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAITable/Resource"
+   }
+  },
+  "ResourceManagerRole265BF90E": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Description": "Execution role for resource-manager Lambda function",
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/ResourceManagerRole/Resource"
+   }
+  },
+  "ResourceManagerRoleDefaultPolicy9C54B5D2": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "dynamodb:DeleteItem",
+        "dynamodb:GetItem",
+        "dynamodb:PutItem",
+        "dynamodb:Query",
+        "dynamodb:UpdateItem"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "LearningPathAITableBD9B6D96",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:aws:lambda:us-east-1:",
+          {
+           "Ref": "AWS::AccountId"
+          },
+          ":function:learningpath-ai-ai-analyzer"
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "ResourceManagerRoleDefaultPolicy9C54B5D2",
+    "Roles": [
+     {
+      "Ref": "ResourceManagerRole265BF90E"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/ResourceManagerRole/DefaultPolicy/Resource"
+   }
+  },
+  "AiAnalyzerRole48E05D14": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Description": "Execution role for ai-analyzer Lambda function",
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/AiAnalyzerRole/Resource"
+   }
+  },
+  "AiAnalyzerRoleDefaultPolicyAD121F99": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "dynamodb:DeleteItem",
+        "dynamodb:GetItem",
+        "dynamodb:PutItem",
+        "dynamodb:Query",
+        "dynamodb:UpdateItem"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "LearningPathAITableBD9B6D96",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": "bedrock:InvokeModel",
+       "Effect": "Allow",
+       "Resource": "arn:aws:bedrock:*::foundation-model/amazon.nova-lite-v1:0"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "AiAnalyzerRoleDefaultPolicyAD121F99",
+    "Roles": [
+     {
+      "Ref": "AiAnalyzerRole48E05D14"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/AiAnalyzerRole/DefaultPolicy/Resource"
+   }
+  },
+  "CareerGoalManagerRole30EB12D7": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Description": "Execution role for career-goal-manager Lambda function",
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/CareerGoalManagerRole/Resource"
+   }
+  },
+  "CareerGoalManagerRoleDefaultPolicy09D7D53F": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "dynamodb:DeleteItem",
+        "dynamodb:GetItem",
+        "dynamodb:PutItem",
+        "dynamodb:Query",
+        "dynamodb:UpdateItem"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "LearningPathAITableBD9B6D96",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:aws:lambda:us-east-1:",
+          {
+           "Ref": "AWS::AccountId"
+          },
+          ":function:learningpath-ai-ai-planner"
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "CareerGoalManagerRoleDefaultPolicy09D7D53F",
+    "Roles": [
+     {
+      "Ref": "CareerGoalManagerRole30EB12D7"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/CareerGoalManagerRole/DefaultPolicy/Resource"
+   }
+  },
+  "AiPlannerRoleE7A3A11D": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Description": "Execution role for ai-planner Lambda function",
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/AiPlannerRole/Resource"
+   }
+  },
+  "AiPlannerRoleDefaultPolicy62F4B788": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "dynamodb:DeleteItem",
+        "dynamodb:GetItem",
+        "dynamodb:PutItem",
+        "dynamodb:Query",
+        "dynamodb:UpdateItem"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "LearningPathAITableBD9B6D96",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": "bedrock:InvokeModel",
+       "Effect": "Allow",
+       "Resource": "arn:aws:bedrock:*::foundation-model/amazon.nova-lite-v1:0"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "AiPlannerRoleDefaultPolicy62F4B788",
+    "Roles": [
+     {
+      "Ref": "AiPlannerRoleE7A3A11D"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/AiPlannerRole/DefaultPolicy/Resource"
+   }
+  },
+  "DashboardApiRoleE8C5313C": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Description": "Execution role for dashboard-api Lambda function",
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/DashboardApiRole/Resource"
+   }
+  },
+  "DashboardApiRoleDefaultPolicy841BE9CB": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "dynamodb:GetItem",
+        "dynamodb:Query"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "LearningPathAITableBD9B6D96",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "DashboardApiRoleDefaultPolicy841BE9CB",
+    "Roles": [
+     {
+      "Ref": "DashboardApiRoleE8C5313C"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/DashboardApiRole/DefaultPolicy/Resource"
+   }
+  },
+  "ProgressTrackerRole334B43C5": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Description": "Execution role for progress-tracker Lambda function",
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/ProgressTrackerRole/Resource"
+   }
+  },
+  "ProgressTrackerRoleDefaultPolicy4CE0F64B": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "dynamodb:DeleteItem",
+        "dynamodb:GetItem",
+        "dynamodb:PutItem",
+        "dynamodb:Query",
+        "dynamodb:UpdateItem"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "LearningPathAITableBD9B6D96",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:aws:lambda:us-east-1:",
+          {
+           "Ref": "AWS::AccountId"
+          },
+          ":function:learningpath-ai-ai-planner"
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "ProgressTrackerRoleDefaultPolicy4CE0F64B",
+    "Roles": [
+     {
+      "Ref": "ProgressTrackerRole334B43C5"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/ProgressTrackerRole/DefaultPolicy/Resource"
+   }
+  },
+  "SearchServiceRole07C1C773": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Description": "Execution role for search-service Lambda function",
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/SearchServiceRole/Resource"
+   }
+  },
+  "SearchServiceRoleDefaultPolicyDF40B5BC": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "dynamodb:GetItem",
+        "dynamodb:Query"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "LearningPathAITableBD9B6D96",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "SearchServiceRoleDefaultPolicyDF40B5BC",
+    "Roles": [
+     {
+      "Ref": "SearchServiceRole07C1C773"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/SearchServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "ResourceManagerFunction32F92717": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "ZipFile": "def handler(event, context):\n    return {'statusCode': 200, 'body': 'placeholder'}\n"
+    },
+    "Description": "LearningPath AI — resource-manager (placeholder)",
+    "Environment": {
+     "Variables": {
+      "TABLE_NAME": {
+       "Ref": "LearningPathAITableBD9B6D96"
+      },
+      "BEDROCK_MODEL_ID": "amazon.nova-lite-v1:0"
+     }
+    },
+    "FunctionName": "learningpath-ai-resource-manager",
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "ResourceManagerRole265BF90E",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.11",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "ResourceManagerRoleDefaultPolicy9C54B5D2",
+    "ResourceManagerRole265BF90E"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/ResourceManagerFunction/Resource"
+   }
+  },
+  "AiAnalyzerFunction8FCC4ED2": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "ZipFile": "def handler(event, context):\n    return {'statusCode': 200, 'body': 'placeholder'}\n"
+    },
+    "Description": "LearningPath AI — ai-analyzer (placeholder)",
+    "Environment": {
+     "Variables": {
+      "TABLE_NAME": {
+       "Ref": "LearningPathAITableBD9B6D96"
+      },
+      "BEDROCK_MODEL_ID": "amazon.nova-lite-v1:0"
+     }
+    },
+    "FunctionName": "learningpath-ai-ai-analyzer",
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "AiAnalyzerRole48E05D14",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.11",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "AiAnalyzerRoleDefaultPolicyAD121F99",
+    "AiAnalyzerRole48E05D14"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/AiAnalyzerFunction/Resource"
+   }
+  },
+  "CareerGoalManagerFunctionD39E2E6B": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "ZipFile": "def handler(event, context):\n    return {'statusCode': 200, 'body': 'placeholder'}\n"
+    },
+    "Description": "LearningPath AI — career-goal-manager (placeholder)",
+    "Environment": {
+     "Variables": {
+      "TABLE_NAME": {
+       "Ref": "LearningPathAITableBD9B6D96"
+      },
+      "BEDROCK_MODEL_ID": "amazon.nova-lite-v1:0"
+     }
+    },
+    "FunctionName": "learningpath-ai-career-goal-manager",
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "CareerGoalManagerRole30EB12D7",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.11",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "CareerGoalManagerRoleDefaultPolicy09D7D53F",
+    "CareerGoalManagerRole30EB12D7"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/CareerGoalManagerFunction/Resource"
+   }
+  },
+  "AiPlannerFunctionD8CC2CB4": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "ZipFile": "def handler(event, context):\n    return {'statusCode': 200, 'body': 'placeholder'}\n"
+    },
+    "Description": "LearningPath AI — ai-planner (placeholder)",
+    "Environment": {
+     "Variables": {
+      "TABLE_NAME": {
+       "Ref": "LearningPathAITableBD9B6D96"
+      },
+      "BEDROCK_MODEL_ID": "amazon.nova-lite-v1:0"
+     }
+    },
+    "FunctionName": "learningpath-ai-ai-planner",
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "AiPlannerRoleE7A3A11D",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.11",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "AiPlannerRoleDefaultPolicy62F4B788",
+    "AiPlannerRoleE7A3A11D"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/AiPlannerFunction/Resource"
+   }
+  },
+  "DashboardApiFunction06980FFF": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "ZipFile": "def handler(event, context):\n    return {'statusCode': 200, 'body': 'placeholder'}\n"
+    },
+    "Description": "LearningPath AI — dashboard-api (placeholder)",
+    "Environment": {
+     "Variables": {
+      "TABLE_NAME": {
+       "Ref": "LearningPathAITableBD9B6D96"
+      },
+      "BEDROCK_MODEL_ID": "amazon.nova-lite-v1:0"
+     }
+    },
+    "FunctionName": "learningpath-ai-dashboard-api",
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "DashboardApiRoleE8C5313C",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.11",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "DashboardApiRoleDefaultPolicy841BE9CB",
+    "DashboardApiRoleE8C5313C"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/DashboardApiFunction/Resource"
+   }
+  },
+  "ProgressTrackerFunctionEBC4284A": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "ZipFile": "def handler(event, context):\n    return {'statusCode': 200, 'body': 'placeholder'}\n"
+    },
+    "Description": "LearningPath AI — progress-tracker (placeholder)",
+    "Environment": {
+     "Variables": {
+      "TABLE_NAME": {
+       "Ref": "LearningPathAITableBD9B6D96"
+      },
+      "BEDROCK_MODEL_ID": "amazon.nova-lite-v1:0"
+     }
+    },
+    "FunctionName": "learningpath-ai-progress-tracker",
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "ProgressTrackerRole334B43C5",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.11",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "ProgressTrackerRoleDefaultPolicy4CE0F64B",
+    "ProgressTrackerRole334B43C5"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/ProgressTrackerFunction/Resource"
+   }
+  },
+  "SearchServiceFunctionD4BD2313": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "ZipFile": "def handler(event, context):\n    return {'statusCode': 200, 'body': 'placeholder'}\n"
+    },
+    "Description": "LearningPath AI — search-service (placeholder)",
+    "Environment": {
+     "Variables": {
+      "TABLE_NAME": {
+       "Ref": "LearningPathAITableBD9B6D96"
+      },
+      "BEDROCK_MODEL_ID": "amazon.nova-lite-v1:0"
+     }
+    },
+    "FunctionName": "learningpath-ai-search-service",
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "SearchServiceRole07C1C773",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.11",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "SearchServiceRoleDefaultPolicyDF40B5BC",
+    "SearchServiceRole07C1C773"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/SearchServiceFunction/Resource"
+   }
+  },
+  "AiPlannerRealFunctionC11F7DCB": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1"
+     },
+     "S3Key": "ccb5606ec309b2ad9657ae49cfe1e5a95f2e9a5698afc3fe90cda9d1c0d1c87a.zip"
+    },
+    "Description": "LearningPath AI — AI_Planner Lambda",
+    "Environment": {
+     "Variables": {
+      "DYNAMODB_TABLE_NAME": {
+       "Ref": "LearningPathAITableBD9B6D96"
+      },
+      "BEDROCK_MODEL_ID": "amazon.nova-lite-v1:0"
+     }
+    },
+    "FunctionName": "learningpath-ai-ai-planner",
+    "Handler": "handler.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "AiPlannerRoleE7A3A11D",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.11",
+    "Timeout": 60
+   },
+   "DependsOn": [
+    "AiPlannerRoleDefaultPolicy62F4B788",
+    "AiPlannerRoleE7A3A11D"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/AiPlannerRealFunction/Resource",
+    "aws:asset:path": "/Users/vijayaraghavanvashudevan/Documents/aws ug mdu/LearningPath AI/backend",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "CareerGoalManagerRealFunction944946EA": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1"
+     },
+     "S3Key": "b83d25a1cd078fecc14ad1c88bc2e809d9ca88bbdcda9da447a63fa7b44e291a.zip"
+    },
+    "Description": "LearningPath AI — CareerGoalManager Lambda",
+    "Environment": {
+     "Variables": {
+      "DYNAMODB_TABLE_NAME": {
+       "Ref": "LearningPathAITableBD9B6D96"
+      },
+      "BEDROCK_MODEL_ID": "amazon.nova-lite-v1:0",
+      "AI_PLANNER_FUNCTION_NAME": "learningpath-ai-ai-planner"
+     }
+    },
+    "FunctionName": "learningpath-ai-career-goal-manager",
+    "Handler": "handler.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "CareerGoalManagerRole30EB12D7",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.11",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "CareerGoalManagerRoleDefaultPolicy09D7D53F",
+    "CareerGoalManagerRole30EB12D7"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/CareerGoalManagerRealFunction/Resource",
+    "aws:asset:path": "/Users/vijayaraghavanvashudevan/Documents/aws ug mdu/LearningPath AI/backend",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "AiAnalyzerRealFunction16E4A5FF": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1"
+     },
+     "S3Key": "5557c7402cecc184c5c11a6d26fb87de3e2f8b99393199dc39f49559a2d91cab.zip"
+    },
+    "Description": "LearningPath AI — AI_Analyzer Lambda",
+    "Environment": {
+     "Variables": {
+      "DYNAMODB_TABLE_NAME": {
+       "Ref": "LearningPathAITableBD9B6D96"
+      },
+      "BEDROCK_MODEL_ID": "amazon.nova-lite-v1:0"
+     }
+    },
+    "FunctionName": "learningpath-ai-ai-analyzer",
+    "Handler": "handler.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "AiAnalyzerRole48E05D14",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.11",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "AiAnalyzerRoleDefaultPolicyAD121F99",
+    "AiAnalyzerRole48E05D14"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/AiAnalyzerRealFunction/Resource",
+    "aws:asset:path": "/Users/vijayaraghavanvashudevan/Documents/aws ug mdu/LearningPath AI/backend",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "ResourceManagerRealFunction9AE6E647": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1"
+     },
+     "S3Key": "fbf68d0387123237bad3a302ffcc4c159cf8329dfb2b2467b343b1c5f3f31e47.zip"
+    },
+    "Description": "LearningPath AI — ResourceManager Lambda",
+    "Environment": {
+     "Variables": {
+      "DYNAMODB_TABLE_NAME": {
+       "Ref": "LearningPathAITableBD9B6D96"
+      },
+      "BEDROCK_MODEL_ID": "amazon.nova-lite-v1:0",
+      "AI_ANALYZER_FUNCTION_NAME": "learningpath-ai-ai-analyzer"
+     }
+    },
+    "FunctionName": "learningpath-ai-resource-manager",
+    "Handler": "handler.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "ResourceManagerRole265BF90E",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.11",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "ResourceManagerRoleDefaultPolicy9C54B5D2",
+    "ResourceManagerRole265BF90E"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/ResourceManagerRealFunction/Resource",
+    "aws:asset:path": "/Users/vijayaraghavanvashudevan/Documents/aws ug mdu/LearningPath AI/backend",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "DashboardApiRealFunction1A5327D4": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1"
+     },
+     "S3Key": "75d78c2fd210331832f6b4f80eac9f3f6e1102c92dafe7e0aae8f923dbb4a944.zip"
+    },
+    "Description": "LearningPath AI — DashboardAPI Lambda",
+    "Environment": {
+     "Variables": {
+      "DYNAMODB_TABLE_NAME": {
+       "Ref": "LearningPathAITableBD9B6D96"
+      }
+     }
+    },
+    "FunctionName": "learningpath-ai-dashboard-api",
+    "Handler": "handler.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "DashboardApiRoleE8C5313C",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.11",
+    "Timeout": 10
+   },
+   "DependsOn": [
+    "DashboardApiRoleDefaultPolicy841BE9CB",
+    "DashboardApiRoleE8C5313C"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/DashboardApiRealFunction/Resource",
+    "aws:asset:path": "/Users/vijayaraghavanvashudevan/Documents/aws ug mdu/LearningPath AI/backend",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "ProgressTrackerRealFunctionFEC4365F": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1"
+     },
+     "S3Key": "f5fe0b19f7d1e1c5bb9eaa3f6be544d45b7e94f3ecd54c22692d9a47906e89f4.zip"
+    },
+    "Description": "LearningPath AI — ProgressTracker Lambda",
+    "Environment": {
+     "Variables": {
+      "DYNAMODB_TABLE_NAME": {
+       "Ref": "LearningPathAITableBD9B6D96"
+      },
+      "AI_PLANNER_FUNCTION_NAME": "learningpath-ai-ai-planner"
+     }
+    },
+    "FunctionName": "learningpath-ai-progress-tracker",
+    "Handler": "handler.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "ProgressTrackerRole334B43C5",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.11",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "ProgressTrackerRoleDefaultPolicy4CE0F64B",
+    "ProgressTrackerRole334B43C5"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/ProgressTrackerRealFunction/Resource",
+    "aws:asset:path": "/Users/vijayaraghavanvashudevan/Documents/aws ug mdu/LearningPath AI/backend",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "SearchServiceRealFunction6F9B8AC1": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1"
+     },
+     "S3Key": "1174d8e9dfb496d3698ccfc7d25866c0025b2b30e8704f3c8418d7455761b09d.zip"
+    },
+    "Description": "LearningPath AI — SearchService Lambda",
+    "Environment": {
+     "Variables": {
+      "DYNAMODB_TABLE_NAME": {
+       "Ref": "LearningPathAITableBD9B6D96"
+      }
+     }
+    },
+    "FunctionName": "learningpath-ai-search-service",
+    "Handler": "handler.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "SearchServiceRole07C1C773",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.11",
+    "Timeout": 10
+   },
+   "DependsOn": [
+    "SearchServiceRoleDefaultPolicyDF40B5BC",
+    "SearchServiceRole07C1C773"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/SearchServiceRealFunction/Resource",
+    "aws:asset:path": "/Users/vijayaraghavanvashudevan/Documents/aws ug mdu/LearningPath AI/backend",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "StreakResetRuleA04EBF71": {
+   "Type": "AWS::Events::Rule",
+   "Properties": {
+    "Description": "Triggers ProgressTracker at midnight UTC to reset study streaks",
+    "Name": "LearningPathAI-MidnightStreakReset",
+    "ScheduleExpression": "cron(0 0 * * ? *)",
+    "State": "ENABLED",
+    "Targets": [
+     {
+      "Arn": {
+       "Fn::GetAtt": [
+        "ProgressTrackerRealFunctionFEC4365F",
+        "Arn"
+       ]
+      },
+      "Id": "Target0",
+      "Input": "{\"source\":\"aws.events\"}"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/StreakResetRule/Resource"
+   }
+  },
+  "StreakResetRuleAllowEventRuleLearningPathAiStackProgressTrackerRealFunctionB4EDC930E5D09193": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ProgressTrackerRealFunctionFEC4365F",
+      "Arn"
+     ]
+    },
+    "Principal": "events.amazonaws.com",
+    "SourceArn": {
+     "Fn::GetAtt": [
+      "StreakResetRuleA04EBF71",
+      "Arn"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/StreakResetRule/AllowEventRuleLearningPathAiStackProgressTrackerRealFunctionB4EDC930"
+   }
+  },
+  "AuthorizerRole8EA4615E": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Description": "Execution role for API Gateway Lambda authorizer",
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/AuthorizerRole/Resource"
+   }
+  },
+  "AuthAuthorizerFunctionC2C29983": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1"
+     },
+     "S3Key": "6182c801f33e0b863a6338994dd09c4a15aedb31f4a52f207d4c698a4ffaad4d.zip"
+    },
+    "Description": "LearningPath AI — Lambda authorizer (validates Authorization header)",
+    "FunctionName": "learningpath-ai-auth-authorizer",
+    "Handler": "handler.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "AuthorizerRole8EA4615E",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.11",
+    "Timeout": 5
+   },
+   "DependsOn": [
+    "AuthorizerRole8EA4615E"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/AuthAuthorizerFunction/Resource",
+    "aws:asset:path": "/Users/vijayaraghavanvashudevan/Documents/aws ug mdu/LearningPath AI/backend",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "AuthAuthorizerFunctionLearningPathAiStackLearningPathAIAuthorizerE30E5563PermissionsC369A0CE": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AuthAuthorizerFunctionC2C29983",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LearningPathAIApiE567CA2F"
+       },
+       "/authorizers/",
+       {
+        "Ref": "LearningPathAIAuthorizer5A13512C"
+       }
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/AuthAuthorizerFunction/LearningPathAiStackLearningPathAIAuthorizerE30E5563:Permissions"
+   }
+  },
+  "LearningPathAIApiE567CA2F": {
+   "Type": "AWS::ApiGateway::RestApi",
+   "Properties": {
+    "Description": "LearningPath AI REST API",
+    "Name": "LearningPathAI-API"
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Resource"
+   }
+  },
+  "LearningPathAIApiDeployment909D0499cc0e8063cb067b62aa3ed486f1939200": {
+   "Type": "AWS::ApiGateway::Deployment",
+   "Properties": {
+    "Description": "LearningPath AI REST API",
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "DependsOn": [
+    "ContentTypeValidatorDDE6A5BD",
+    "LearningPathAIApianalyzeOPTIONS3E2E1C0C",
+    "LearningPathAIApianalyzePOST474D6199",
+    "LearningPathAIApianalyze8D257739",
+    "LearningPathAIApicareergoalOPTIONS4E56BFAF",
+    "LearningPathAIApicareergoalPOSTA465AB09",
+    "LearningPathAIApicareergoalPUT528E82BF",
+    "LearningPathAIApicareergoal19C5661A",
+    "LearningPathAIApidashboardGETB2712D61",
+    "LearningPathAIApidashboardOPTIONSE2136030",
+    "LearningPathAIApidashboard044F18FC",
+    "LearningPathAIApilearningplanOPTIONS86668445",
+    "LearningPathAIApilearningplanPOST11CF2F06",
+    "LearningPathAIApilearningplan103802D9",
+    "LearningPathAIApiOPTIONS6AE68153",
+    "LearningPathAIApiprogressidOPTIONSD75B0EAD",
+    "LearningPathAIApiprogressidPATCH527C677B",
+    "LearningPathAIApiprogressidPUT48080213",
+    "LearningPathAIApiprogressidBDC57A84",
+    "LearningPathAIApiprogressOPTIONS8FD3DDCE",
+    "LearningPathAIApiprogressB15D43E5",
+    "LearningPathAIApiresourcesidDELETE8F717C5F",
+    "LearningPathAIApiresourcesidOPTIONS415BE505",
+    "LearningPathAIApiresourcesidPUTD898584A",
+    "LearningPathAIApiresourcesid2BFC45A3",
+    "LearningPathAIApiresourcesGETE8A32B6E",
+    "LearningPathAIApiresourcesOPTIONS63D26B8F",
+    "LearningPathAIApiresourcesPOSTB5C3D711",
+    "LearningPathAIApiresourcesA3658EE0",
+    "LearningPathAIApisearchGET042FEF93",
+    "LearningPathAIApisearchOPTIONSD8D84598",
+    "LearningPathAIApisearch5747CAAC",
+    "LearningPathAIAuthorizer5A13512C"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Deployment/Resource",
+    "aws:cdk:do-not-refactor": true
+   }
+  },
+  "LearningPathAIApiDeploymentStageprodA20D153B": {
+   "Type": "AWS::ApiGateway::Stage",
+   "Properties": {
+    "DeploymentId": {
+     "Ref": "LearningPathAIApiDeployment909D0499cc0e8063cb067b62aa3ed486f1939200"
+    },
+    "MethodSettings": [
+     {
+      "DataTraceEnabled": false,
+      "HttpMethod": "*",
+      "ResourcePath": "/*",
+      "ThrottlingBurstLimit": 10,
+      "ThrottlingRateLimit": 1.67
+     }
+    ],
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    },
+    "StageName": "prod"
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/DeploymentStage.prod/Resource"
+   }
+  },
+  "LearningPathAIApiOPTIONS6AE68153": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Fn::GetAtt": [
+      "LearningPathAIApiE567CA2F",
+      "RootResourceId"
+     ]
+    },
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/OPTIONS/Resource"
+   }
+  },
+  "LearningPathAIApiresourcesA3658EE0": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "LearningPathAIApiE567CA2F",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "resources",
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/resources/Resource"
+   }
+  },
+  "LearningPathAIApiresourcesOPTIONS63D26B8F": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "LearningPathAIApiresourcesA3658EE0"
+    },
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/resources/OPTIONS/Resource"
+   }
+  },
+  "LearningPathAIApiresourcesPOSTApiPermissionLearningPathAiStackLearningPathAIApiADE4CC95POSTresources43B355E9": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ResourceManagerRealFunction9AE6E647",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LearningPathAIApiE567CA2F"
+       },
+       "/",
+       {
+        "Ref": "LearningPathAIApiDeploymentStageprodA20D153B"
+       },
+       "/POST/resources"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/resources/POST/ApiPermission.LearningPathAiStackLearningPathAIApiADE4CC95.POST..resources"
+   }
+  },
+  "LearningPathAIApiresourcesPOSTApiPermissionTestLearningPathAiStackLearningPathAIApiADE4CC95POSTresources9657ECBE": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ResourceManagerRealFunction9AE6E647",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LearningPathAIApiE567CA2F"
+       },
+       "/test-invoke-stage/POST/resources"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/resources/POST/ApiPermission.Test.LearningPathAiStackLearningPathAIApiADE4CC95.POST..resources"
+   }
+  },
+  "LearningPathAIApiresourcesPOSTB5C3D711": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "CUSTOM",
+    "AuthorizerId": {
+     "Ref": "LearningPathAIAuthorizer5A13512C"
+    },
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "ResourceManagerRealFunction9AE6E647",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "RequestParameters": {
+     "method.request.header.Content-Type": true
+    },
+    "RequestValidatorId": {
+     "Ref": "ContentTypeValidatorDDE6A5BD"
+    },
+    "ResourceId": {
+     "Ref": "LearningPathAIApiresourcesA3658EE0"
+    },
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/resources/POST/Resource"
+   }
+  },
+  "LearningPathAIApiresourcesGETApiPermissionLearningPathAiStackLearningPathAIApiADE4CC95GETresources216BA791": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ResourceManagerRealFunction9AE6E647",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LearningPathAIApiE567CA2F"
+       },
+       "/",
+       {
+        "Ref": "LearningPathAIApiDeploymentStageprodA20D153B"
+       },
+       "/GET/resources"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/resources/GET/ApiPermission.LearningPathAiStackLearningPathAIApiADE4CC95.GET..resources"
+   }
+  },
+  "LearningPathAIApiresourcesGETApiPermissionTestLearningPathAiStackLearningPathAIApiADE4CC95GETresourcesEB395232": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ResourceManagerRealFunction9AE6E647",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LearningPathAIApiE567CA2F"
+       },
+       "/test-invoke-stage/GET/resources"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/resources/GET/ApiPermission.Test.LearningPathAiStackLearningPathAIApiADE4CC95.GET..resources"
+   }
+  },
+  "LearningPathAIApiresourcesGETE8A32B6E": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "CUSTOM",
+    "AuthorizerId": {
+     "Ref": "LearningPathAIAuthorizer5A13512C"
+    },
+    "HttpMethod": "GET",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "ResourceManagerRealFunction9AE6E647",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "LearningPathAIApiresourcesA3658EE0"
+    },
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/resources/GET/Resource"
+   }
+  },
+  "LearningPathAIApiresourcesid2BFC45A3": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "LearningPathAIApiresourcesA3658EE0"
+    },
+    "PathPart": "{id}",
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/resources/{id}/Resource"
+   }
+  },
+  "LearningPathAIApiresourcesidOPTIONS415BE505": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "LearningPathAIApiresourcesid2BFC45A3"
+    },
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/resources/{id}/OPTIONS/Resource"
+   }
+  },
+  "LearningPathAIApiresourcesidPUTApiPermissionLearningPathAiStackLearningPathAIApiADE4CC95PUTresourcesid6932D1F5": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ResourceManagerRealFunction9AE6E647",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LearningPathAIApiE567CA2F"
+       },
+       "/",
+       {
+        "Ref": "LearningPathAIApiDeploymentStageprodA20D153B"
+       },
+       "/PUT/resources/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/resources/{id}/PUT/ApiPermission.LearningPathAiStackLearningPathAIApiADE4CC95.PUT..resources.{id}"
+   }
+  },
+  "LearningPathAIApiresourcesidPUTApiPermissionTestLearningPathAiStackLearningPathAIApiADE4CC95PUTresourcesid0E9C32AC": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ResourceManagerRealFunction9AE6E647",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LearningPathAIApiE567CA2F"
+       },
+       "/test-invoke-stage/PUT/resources/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/resources/{id}/PUT/ApiPermission.Test.LearningPathAiStackLearningPathAIApiADE4CC95.PUT..resources.{id}"
+   }
+  },
+  "LearningPathAIApiresourcesidPUTD898584A": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "CUSTOM",
+    "AuthorizerId": {
+     "Ref": "LearningPathAIAuthorizer5A13512C"
+    },
+    "HttpMethod": "PUT",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "ResourceManagerRealFunction9AE6E647",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "RequestParameters": {
+     "method.request.header.Content-Type": true
+    },
+    "RequestValidatorId": {
+     "Ref": "ContentTypeValidatorDDE6A5BD"
+    },
+    "ResourceId": {
+     "Ref": "LearningPathAIApiresourcesid2BFC45A3"
+    },
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/resources/{id}/PUT/Resource"
+   }
+  },
+  "LearningPathAIApiresourcesidDELETEApiPermissionLearningPathAiStackLearningPathAIApiADE4CC95DELETEresourcesid703687F2": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ResourceManagerRealFunction9AE6E647",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LearningPathAIApiE567CA2F"
+       },
+       "/",
+       {
+        "Ref": "LearningPathAIApiDeploymentStageprodA20D153B"
+       },
+       "/DELETE/resources/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/resources/{id}/DELETE/ApiPermission.LearningPathAiStackLearningPathAIApiADE4CC95.DELETE..resources.{id}"
+   }
+  },
+  "LearningPathAIApiresourcesidDELETEApiPermissionTestLearningPathAiStackLearningPathAIApiADE4CC95DELETEresourcesid231B641E": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ResourceManagerRealFunction9AE6E647",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LearningPathAIApiE567CA2F"
+       },
+       "/test-invoke-stage/DELETE/resources/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/resources/{id}/DELETE/ApiPermission.Test.LearningPathAiStackLearningPathAIApiADE4CC95.DELETE..resources.{id}"
+   }
+  },
+  "LearningPathAIApiresourcesidDELETE8F717C5F": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "CUSTOM",
+    "AuthorizerId": {
+     "Ref": "LearningPathAIAuthorizer5A13512C"
+    },
+    "HttpMethod": "DELETE",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "ResourceManagerRealFunction9AE6E647",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "LearningPathAIApiresourcesid2BFC45A3"
+    },
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/resources/{id}/DELETE/Resource"
+   }
+  },
+  "LearningPathAIApianalyze8D257739": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "LearningPathAIApiE567CA2F",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "analyze",
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/analyze/Resource"
+   }
+  },
+  "LearningPathAIApianalyzeOPTIONS3E2E1C0C": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "LearningPathAIApianalyze8D257739"
+    },
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/analyze/OPTIONS/Resource"
+   }
+  },
+  "LearningPathAIApianalyzePOSTApiPermissionLearningPathAiStackLearningPathAIApiADE4CC95POSTanalyze392CFF63": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AiAnalyzerRealFunction16E4A5FF",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LearningPathAIApiE567CA2F"
+       },
+       "/",
+       {
+        "Ref": "LearningPathAIApiDeploymentStageprodA20D153B"
+       },
+       "/POST/analyze"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/analyze/POST/ApiPermission.LearningPathAiStackLearningPathAIApiADE4CC95.POST..analyze"
+   }
+  },
+  "LearningPathAIApianalyzePOSTApiPermissionTestLearningPathAiStackLearningPathAIApiADE4CC95POSTanalyze1E80AA42": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AiAnalyzerRealFunction16E4A5FF",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LearningPathAIApiE567CA2F"
+       },
+       "/test-invoke-stage/POST/analyze"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/analyze/POST/ApiPermission.Test.LearningPathAiStackLearningPathAIApiADE4CC95.POST..analyze"
+   }
+  },
+  "LearningPathAIApianalyzePOST474D6199": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "CUSTOM",
+    "AuthorizerId": {
+     "Ref": "LearningPathAIAuthorizer5A13512C"
+    },
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "AiAnalyzerRealFunction16E4A5FF",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "RequestParameters": {
+     "method.request.header.Content-Type": true
+    },
+    "RequestValidatorId": {
+     "Ref": "ContentTypeValidatorDDE6A5BD"
+    },
+    "ResourceId": {
+     "Ref": "LearningPathAIApianalyze8D257739"
+    },
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/analyze/POST/Resource"
+   }
+  },
+  "LearningPathAIApicareergoal19C5661A": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "LearningPathAIApiE567CA2F",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "career-goal",
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/career-goal/Resource"
+   }
+  },
+  "LearningPathAIApicareergoalOPTIONS4E56BFAF": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "LearningPathAIApicareergoal19C5661A"
+    },
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/career-goal/OPTIONS/Resource"
+   }
+  },
+  "LearningPathAIApicareergoalPOSTApiPermissionLearningPathAiStackLearningPathAIApiADE4CC95POSTcareergoal380FFEE6": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "CareerGoalManagerRealFunction944946EA",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LearningPathAIApiE567CA2F"
+       },
+       "/",
+       {
+        "Ref": "LearningPathAIApiDeploymentStageprodA20D153B"
+       },
+       "/POST/career-goal"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/career-goal/POST/ApiPermission.LearningPathAiStackLearningPathAIApiADE4CC95.POST..career-goal"
+   }
+  },
+  "LearningPathAIApicareergoalPOSTApiPermissionTestLearningPathAiStackLearningPathAIApiADE4CC95POSTcareergoal5C449824": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "CareerGoalManagerRealFunction944946EA",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LearningPathAIApiE567CA2F"
+       },
+       "/test-invoke-stage/POST/career-goal"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/career-goal/POST/ApiPermission.Test.LearningPathAiStackLearningPathAIApiADE4CC95.POST..career-goal"
+   }
+  },
+  "LearningPathAIApicareergoalPOSTA465AB09": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "CUSTOM",
+    "AuthorizerId": {
+     "Ref": "LearningPathAIAuthorizer5A13512C"
+    },
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "CareerGoalManagerRealFunction944946EA",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "RequestParameters": {
+     "method.request.header.Content-Type": true
+    },
+    "RequestValidatorId": {
+     "Ref": "ContentTypeValidatorDDE6A5BD"
+    },
+    "ResourceId": {
+     "Ref": "LearningPathAIApicareergoal19C5661A"
+    },
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/career-goal/POST/Resource"
+   }
+  },
+  "LearningPathAIApicareergoalPUTApiPermissionLearningPathAiStackLearningPathAIApiADE4CC95PUTcareergoal97CD27DB": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "CareerGoalManagerRealFunction944946EA",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LearningPathAIApiE567CA2F"
+       },
+       "/",
+       {
+        "Ref": "LearningPathAIApiDeploymentStageprodA20D153B"
+       },
+       "/PUT/career-goal"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/career-goal/PUT/ApiPermission.LearningPathAiStackLearningPathAIApiADE4CC95.PUT..career-goal"
+   }
+  },
+  "LearningPathAIApicareergoalPUTApiPermissionTestLearningPathAiStackLearningPathAIApiADE4CC95PUTcareergoalA3BDA28C": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "CareerGoalManagerRealFunction944946EA",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LearningPathAIApiE567CA2F"
+       },
+       "/test-invoke-stage/PUT/career-goal"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/career-goal/PUT/ApiPermission.Test.LearningPathAiStackLearningPathAIApiADE4CC95.PUT..career-goal"
+   }
+  },
+  "LearningPathAIApicareergoalPUT528E82BF": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "CUSTOM",
+    "AuthorizerId": {
+     "Ref": "LearningPathAIAuthorizer5A13512C"
+    },
+    "HttpMethod": "PUT",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "CareerGoalManagerRealFunction944946EA",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "RequestParameters": {
+     "method.request.header.Content-Type": true
+    },
+    "RequestValidatorId": {
+     "Ref": "ContentTypeValidatorDDE6A5BD"
+    },
+    "ResourceId": {
+     "Ref": "LearningPathAIApicareergoal19C5661A"
+    },
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/career-goal/PUT/Resource"
+   }
+  },
+  "LearningPathAIApilearningplan103802D9": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "LearningPathAIApiE567CA2F",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "learning-plan",
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/learning-plan/Resource"
+   }
+  },
+  "LearningPathAIApilearningplanOPTIONS86668445": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "LearningPathAIApilearningplan103802D9"
+    },
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/learning-plan/OPTIONS/Resource"
+   }
+  },
+  "LearningPathAIApilearningplanPOSTApiPermissionLearningPathAiStackLearningPathAIApiADE4CC95POSTlearningplanF4C646B3": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AiPlannerRealFunctionC11F7DCB",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LearningPathAIApiE567CA2F"
+       },
+       "/",
+       {
+        "Ref": "LearningPathAIApiDeploymentStageprodA20D153B"
+       },
+       "/POST/learning-plan"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/learning-plan/POST/ApiPermission.LearningPathAiStackLearningPathAIApiADE4CC95.POST..learning-plan"
+   }
+  },
+  "LearningPathAIApilearningplanPOSTApiPermissionTestLearningPathAiStackLearningPathAIApiADE4CC95POSTlearningplan77326343": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AiPlannerRealFunctionC11F7DCB",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LearningPathAIApiE567CA2F"
+       },
+       "/test-invoke-stage/POST/learning-plan"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/learning-plan/POST/ApiPermission.Test.LearningPathAiStackLearningPathAIApiADE4CC95.POST..learning-plan"
+   }
+  },
+  "LearningPathAIApilearningplanPOST11CF2F06": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "CUSTOM",
+    "AuthorizerId": {
+     "Ref": "LearningPathAIAuthorizer5A13512C"
+    },
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "AiPlannerRealFunctionC11F7DCB",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "RequestParameters": {
+     "method.request.header.Content-Type": true
+    },
+    "RequestValidatorId": {
+     "Ref": "ContentTypeValidatorDDE6A5BD"
+    },
+    "ResourceId": {
+     "Ref": "LearningPathAIApilearningplan103802D9"
+    },
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/learning-plan/POST/Resource"
+   }
+  },
+  "LearningPathAIApidashboard044F18FC": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "LearningPathAIApiE567CA2F",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "dashboard",
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/dashboard/Resource"
+   }
+  },
+  "LearningPathAIApidashboardOPTIONSE2136030": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "LearningPathAIApidashboard044F18FC"
+    },
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/dashboard/OPTIONS/Resource"
+   }
+  },
+  "LearningPathAIApidashboardGETApiPermissionLearningPathAiStackLearningPathAIApiADE4CC95GETdashboard3AE150F3": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "DashboardApiRealFunction1A5327D4",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LearningPathAIApiE567CA2F"
+       },
+       "/",
+       {
+        "Ref": "LearningPathAIApiDeploymentStageprodA20D153B"
+       },
+       "/GET/dashboard"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/dashboard/GET/ApiPermission.LearningPathAiStackLearningPathAIApiADE4CC95.GET..dashboard"
+   }
+  },
+  "LearningPathAIApidashboardGETApiPermissionTestLearningPathAiStackLearningPathAIApiADE4CC95GETdashboardDC185B35": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "DashboardApiRealFunction1A5327D4",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LearningPathAIApiE567CA2F"
+       },
+       "/test-invoke-stage/GET/dashboard"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/dashboard/GET/ApiPermission.Test.LearningPathAiStackLearningPathAIApiADE4CC95.GET..dashboard"
+   }
+  },
+  "LearningPathAIApidashboardGETB2712D61": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "CUSTOM",
+    "AuthorizerId": {
+     "Ref": "LearningPathAIAuthorizer5A13512C"
+    },
+    "HttpMethod": "GET",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "DashboardApiRealFunction1A5327D4",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "LearningPathAIApidashboard044F18FC"
+    },
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/dashboard/GET/Resource"
+   }
+  },
+  "LearningPathAIApiprogressB15D43E5": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "LearningPathAIApiE567CA2F",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "progress",
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/progress/Resource"
+   }
+  },
+  "LearningPathAIApiprogressOPTIONS8FD3DDCE": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "LearningPathAIApiprogressB15D43E5"
+    },
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/progress/OPTIONS/Resource"
+   }
+  },
+  "LearningPathAIApiprogressidBDC57A84": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "LearningPathAIApiprogressB15D43E5"
+    },
+    "PathPart": "{id}",
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/progress/{id}/Resource"
+   }
+  },
+  "LearningPathAIApiprogressidOPTIONSD75B0EAD": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "LearningPathAIApiprogressidBDC57A84"
+    },
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/progress/{id}/OPTIONS/Resource"
+   }
+  },
+  "LearningPathAIApiprogressidPUTApiPermissionLearningPathAiStackLearningPathAIApiADE4CC95PUTprogressid0F7ECEF2": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ProgressTrackerRealFunctionFEC4365F",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LearningPathAIApiE567CA2F"
+       },
+       "/",
+       {
+        "Ref": "LearningPathAIApiDeploymentStageprodA20D153B"
+       },
+       "/PUT/progress/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/progress/{id}/PUT/ApiPermission.LearningPathAiStackLearningPathAIApiADE4CC95.PUT..progress.{id}"
+   }
+  },
+  "LearningPathAIApiprogressidPUTApiPermissionTestLearningPathAiStackLearningPathAIApiADE4CC95PUTprogressid512BDE3D": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ProgressTrackerRealFunctionFEC4365F",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LearningPathAIApiE567CA2F"
+       },
+       "/test-invoke-stage/PUT/progress/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/progress/{id}/PUT/ApiPermission.Test.LearningPathAiStackLearningPathAIApiADE4CC95.PUT..progress.{id}"
+   }
+  },
+  "LearningPathAIApiprogressidPUT48080213": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "CUSTOM",
+    "AuthorizerId": {
+     "Ref": "LearningPathAIAuthorizer5A13512C"
+    },
+    "HttpMethod": "PUT",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "ProgressTrackerRealFunctionFEC4365F",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "RequestParameters": {
+     "method.request.header.Content-Type": true
+    },
+    "RequestValidatorId": {
+     "Ref": "ContentTypeValidatorDDE6A5BD"
+    },
+    "ResourceId": {
+     "Ref": "LearningPathAIApiprogressidBDC57A84"
+    },
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/progress/{id}/PUT/Resource"
+   }
+  },
+  "LearningPathAIApiprogressidPATCHApiPermissionLearningPathAiStackLearningPathAIApiADE4CC95PATCHprogressid7E77E0C3": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ProgressTrackerRealFunctionFEC4365F",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LearningPathAIApiE567CA2F"
+       },
+       "/",
+       {
+        "Ref": "LearningPathAIApiDeploymentStageprodA20D153B"
+       },
+       "/PATCH/progress/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/progress/{id}/PATCH/ApiPermission.LearningPathAiStackLearningPathAIApiADE4CC95.PATCH..progress.{id}"
+   }
+  },
+  "LearningPathAIApiprogressidPATCHApiPermissionTestLearningPathAiStackLearningPathAIApiADE4CC95PATCHprogressid4F174456": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ProgressTrackerRealFunctionFEC4365F",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LearningPathAIApiE567CA2F"
+       },
+       "/test-invoke-stage/PATCH/progress/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/progress/{id}/PATCH/ApiPermission.Test.LearningPathAiStackLearningPathAIApiADE4CC95.PATCH..progress.{id}"
+   }
+  },
+  "LearningPathAIApiprogressidPATCH527C677B": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "CUSTOM",
+    "AuthorizerId": {
+     "Ref": "LearningPathAIAuthorizer5A13512C"
+    },
+    "HttpMethod": "PATCH",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "ProgressTrackerRealFunctionFEC4365F",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "RequestParameters": {
+     "method.request.header.Content-Type": true
+    },
+    "RequestValidatorId": {
+     "Ref": "ContentTypeValidatorDDE6A5BD"
+    },
+    "ResourceId": {
+     "Ref": "LearningPathAIApiprogressidBDC57A84"
+    },
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/progress/{id}/PATCH/Resource"
+   }
+  },
+  "LearningPathAIApisearch5747CAAC": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "LearningPathAIApiE567CA2F",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "search",
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/search/Resource"
+   }
+  },
+  "LearningPathAIApisearchOPTIONSD8D84598": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "LearningPathAIApisearch5747CAAC"
+    },
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/search/OPTIONS/Resource"
+   }
+  },
+  "LearningPathAIApisearchGETApiPermissionLearningPathAiStackLearningPathAIApiADE4CC95GETsearch4D85FA0B": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "SearchServiceRealFunction6F9B8AC1",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LearningPathAIApiE567CA2F"
+       },
+       "/",
+       {
+        "Ref": "LearningPathAIApiDeploymentStageprodA20D153B"
+       },
+       "/GET/search"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/search/GET/ApiPermission.LearningPathAiStackLearningPathAIApiADE4CC95.GET..search"
+   }
+  },
+  "LearningPathAIApisearchGETApiPermissionTestLearningPathAiStackLearningPathAIApiADE4CC95GETsearch9E6341F9": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "SearchServiceRealFunction6F9B8AC1",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "LearningPathAIApiE567CA2F"
+       },
+       "/test-invoke-stage/GET/search"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/search/GET/ApiPermission.Test.LearningPathAiStackLearningPathAIApiADE4CC95.GET..search"
+   }
+  },
+  "LearningPathAIApisearchGET042FEF93": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "CUSTOM",
+    "AuthorizerId": {
+     "Ref": "LearningPathAIAuthorizer5A13512C"
+    },
+    "HttpMethod": "GET",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "SearchServiceRealFunction6F9B8AC1",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "LearningPathAIApisearch5747CAAC"
+    },
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIApi/Default/search/GET/Resource"
+   }
+  },
+  "Default5xxGatewayResponse": {
+   "Type": "AWS::ApiGateway::GatewayResponse",
+   "Properties": {
+    "ResponseParameters": {
+     "gatewayresponse.header.Content-Type": "'application/json'"
+    },
+    "ResponseTemplates": {
+     "application/json": "{\"error\":\"INTERNAL_SERVER_ERROR\",\"message\":\"An unexpected error occurred.\"}"
+    },
+    "ResponseType": "DEFAULT_5XX",
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/Default5xxGatewayResponse"
+   }
+  },
+  "UnauthorizedGatewayResponse": {
+   "Type": "AWS::ApiGateway::GatewayResponse",
+   "Properties": {
+    "ResponseParameters": {
+     "gatewayresponse.header.Content-Type": "'application/json'"
+    },
+    "ResponseTemplates": {
+     "application/json": "{\"error\":\"UNAUTHORIZED\",\"message\":\"Missing or invalid Authorization header.\"}"
+    },
+    "ResponseType": "UNAUTHORIZED",
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    },
+    "StatusCode": "401"
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/UnauthorizedGatewayResponse"
+   }
+  },
+  "LearningPathAIAuthorizer5A13512C": {
+   "Type": "AWS::ApiGateway::Authorizer",
+   "Properties": {
+    "AuthorizerResultTtlInSeconds": 300,
+    "AuthorizerUri": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           ":",
+           {
+            "Fn::GetAtt": [
+             "AuthAuthorizerFunctionC2C29983",
+             "Arn"
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       ":apigateway:",
+       {
+        "Fn::Select": [
+         3,
+         {
+          "Fn::Split": [
+           ":",
+           {
+            "Fn::GetAtt": [
+             "AuthAuthorizerFunctionC2C29983",
+             "Arn"
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       ":lambda:path/2015-03-31/functions/",
+       {
+        "Fn::GetAtt": [
+         "AuthAuthorizerFunctionC2C29983",
+         "Arn"
+        ]
+       },
+       "/invocations"
+      ]
+     ]
+    },
+    "IdentitySource": "method.request.header.Authorization",
+    "Name": "LearningPathAITokenAuthorizer",
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    },
+    "Type": "TOKEN"
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIAuthorizer/Resource"
+   }
+  },
+  "ContentTypeValidatorDDE6A5BD": {
+   "Type": "AWS::ApiGateway::RequestValidator",
+   "Properties": {
+    "Name": "validate-content-type",
+    "RestApiId": {
+     "Ref": "LearningPathAIApiE567CA2F"
+    },
+    "ValidateRequestBody": false,
+    "ValidateRequestParameters": true
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/ContentTypeValidator/Resource"
+   }
+  },
+  "LearningPathAIWebACL": {
+   "Type": "AWS::WAFv2::WebACL",
+   "Properties": {
+    "DefaultAction": {
+     "Allow": {}
+    },
+    "Name": "LearningPathAI-WebACL",
+    "Rules": [
+     {
+      "Name": "AWSManagedRulesCommonRuleSet",
+      "OverrideAction": {
+       "None": {}
+      },
+      "Priority": 1,
+      "Statement": {
+       "ManagedRuleGroupStatement": {
+        "Name": "AWSManagedRulesCommonRuleSet",
+        "VendorName": "AWS"
+       }
+      },
+      "VisibilityConfig": {
+       "CloudWatchMetricsEnabled": true,
+       "MetricName": "AWSManagedRulesCommonRuleSet",
+       "SampledRequestsEnabled": true
+      }
+     }
+    ],
+    "Scope": "REGIONAL",
+    "VisibilityConfig": {
+     "CloudWatchMetricsEnabled": true,
+     "MetricName": "LearningPathAI-WebACL",
+     "SampledRequestsEnabled": true
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIWebACL"
+   }
+  },
+  "LearningPathAIWebACLAssociation": {
+   "Type": "AWS::WAFv2::WebACLAssociation",
+   "Properties": {
+    "ResourceArn": {
+     "Fn::Sub": [
+      "arn:aws:apigateway:${AWS::Region}::/restapis/${ApiId}/stages/prod",
+      {
+       "ApiId": {
+        "Ref": "LearningPathAIApiE567CA2F"
+       }
+      }
+     ]
+    },
+    "WebACLArn": {
+     "Fn::GetAtt": [
+      "LearningPathAIWebACL",
+      "Arn"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIWebACLAssociation"
+   }
+  },
+  "LearningPathAIUsagePlanC7AFC121": {
+   "Type": "AWS::ApiGateway::UsagePlan",
+   "Properties": {
+    "ApiStages": [
+     {
+      "ApiId": {
+       "Ref": "LearningPathAIApiE567CA2F"
+      },
+      "Stage": {
+       "Ref": "LearningPathAIApiDeploymentStageprodA20D153B"
+      },
+      "Throttle": {}
+     }
+    ],
+    "Description": "100 requests per minute per user",
+    "Throttle": {
+     "BurstLimit": 10,
+     "RateLimit": 1.67
+    },
+    "UsagePlanName": "LearningPathAI-UsagePlan"
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIUsagePlan/Resource"
+   }
+  },
+  "ResourceManagerLogGroup278CE3FB": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "LogGroupName": "/aws/lambda/learningpath-ai-resource-manager",
+    "RetentionInDays": 30
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/ResourceManagerLogGroup/Resource"
+   }
+  },
+  "AiAnalyzerLogGroupAD76438E": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "LogGroupName": "/aws/lambda/learningpath-ai-ai-analyzer",
+    "RetentionInDays": 30
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/AiAnalyzerLogGroup/Resource"
+   }
+  },
+  "CareerGoalManagerLogGroupB2C368FE": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "LogGroupName": "/aws/lambda/learningpath-ai-career-goal-manager",
+    "RetentionInDays": 30
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/CareerGoalManagerLogGroup/Resource"
+   }
+  },
+  "AiPlannerLogGroup65C9AF66": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "LogGroupName": "/aws/lambda/learningpath-ai-ai-planner",
+    "RetentionInDays": 30
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/AiPlannerLogGroup/Resource"
+   }
+  },
+  "DashboardApiLogGroup8A824421": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "LogGroupName": "/aws/lambda/learningpath-ai-dashboard-api",
+    "RetentionInDays": 30
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/DashboardApiLogGroup/Resource"
+   }
+  },
+  "ProgressTrackerLogGroup19BB3EE2": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "LogGroupName": "/aws/lambda/learningpath-ai-progress-tracker",
+    "RetentionInDays": 30
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/ProgressTrackerLogGroup/Resource"
+   }
+  },
+  "SearchServiceLogGroup2B9A3956": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "LogGroupName": "/aws/lambda/learningpath-ai-search-service",
+    "RetentionInDays": 30
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/SearchServiceLogGroup/Resource"
+   }
+  },
+  "LearningPathAIDashboard0D6E42C9": {
+   "Type": "AWS::CloudWatch::Dashboard",
+   "Properties": {
+    "DashboardBody": {
+     "Fn::Join": [
+      "",
+      [
+       "{\"widgets\":[{\"type\":\"metric\",\"width\":8,\"height\":6,\"x\":0,\"y\":0,\"properties\":{\"view\":\"timeSeries\",\"title\":\"Lambda: resource-manager\",\"region\":\"",
+       {
+        "Ref": "AWS::Region"
+       },
+       "\",\"metrics\":[[\"AWS/Lambda\",\"Invocations\",\"FunctionName\",\"",
+       {
+        "Ref": "ResourceManagerRealFunction9AE6E647"
+       },
+       "\",{\"id\":\"invocations\",\"stat\":\"Sum\"}],[\"AWS/Lambda\",\"Errors\",\"FunctionName\",\"",
+       {
+        "Ref": "ResourceManagerRealFunction9AE6E647"
+       },
+       "\",{\"id\":\"errors\",\"stat\":\"Sum\"}],[{\"label\":\"ErrorRate (%)\",\"expression\":\"(errors / MAX([errors, invocations])) * 100\"}],[\"AWS/Lambda\",\"Duration\",\"FunctionName\",\"",
+       {
+        "Ref": "ResourceManagerRealFunction9AE6E647"
+       },
+       "\",{\"stat\":\"p95\",\"yAxis\":\"right\"}]],\"yAxis\":{}}},{\"type\":\"metric\",\"width\":8,\"height\":6,\"x\":8,\"y\":0,\"properties\":{\"view\":\"timeSeries\",\"title\":\"Lambda: ai-analyzer\",\"region\":\"",
+       {
+        "Ref": "AWS::Region"
+       },
+       "\",\"metrics\":[[\"AWS/Lambda\",\"Invocations\",\"FunctionName\",\"",
+       {
+        "Ref": "AiAnalyzerRealFunction16E4A5FF"
+       },
+       "\",{\"id\":\"invocations\",\"stat\":\"Sum\"}],[\"AWS/Lambda\",\"Errors\",\"FunctionName\",\"",
+       {
+        "Ref": "AiAnalyzerRealFunction16E4A5FF"
+       },
+       "\",{\"id\":\"errors\",\"stat\":\"Sum\"}],[{\"label\":\"ErrorRate (%)\",\"expression\":\"(errors / MAX([errors, invocations])) * 100\"}],[\"AWS/Lambda\",\"Duration\",\"FunctionName\",\"",
+       {
+        "Ref": "AiAnalyzerRealFunction16E4A5FF"
+       },
+       "\",{\"stat\":\"p95\",\"yAxis\":\"right\"}]],\"yAxis\":{}}},{\"type\":\"metric\",\"width\":8,\"height\":6,\"x\":16,\"y\":0,\"properties\":{\"view\":\"timeSeries\",\"title\":\"Lambda: career-goal-manager\",\"region\":\"",
+       {
+        "Ref": "AWS::Region"
+       },
+       "\",\"metrics\":[[\"AWS/Lambda\",\"Invocations\",\"FunctionName\",\"",
+       {
+        "Ref": "CareerGoalManagerRealFunction944946EA"
+       },
+       "\",{\"id\":\"invocations\",\"stat\":\"Sum\"}],[\"AWS/Lambda\",\"Errors\",\"FunctionName\",\"",
+       {
+        "Ref": "CareerGoalManagerRealFunction944946EA"
+       },
+       "\",{\"id\":\"errors\",\"stat\":\"Sum\"}],[{\"label\":\"ErrorRate (%)\",\"expression\":\"(errors / MAX([errors, invocations])) * 100\"}],[\"AWS/Lambda\",\"Duration\",\"FunctionName\",\"",
+       {
+        "Ref": "CareerGoalManagerRealFunction944946EA"
+       },
+       "\",{\"stat\":\"p95\",\"yAxis\":\"right\"}]],\"yAxis\":{}}},{\"type\":\"metric\",\"width\":8,\"height\":6,\"x\":0,\"y\":6,\"properties\":{\"view\":\"timeSeries\",\"title\":\"Lambda: ai-planner\",\"region\":\"",
+       {
+        "Ref": "AWS::Region"
+       },
+       "\",\"metrics\":[[\"AWS/Lambda\",\"Invocations\",\"FunctionName\",\"",
+       {
+        "Ref": "AiPlannerRealFunctionC11F7DCB"
+       },
+       "\",{\"id\":\"invocations\",\"stat\":\"Sum\"}],[\"AWS/Lambda\",\"Errors\",\"FunctionName\",\"",
+       {
+        "Ref": "AiPlannerRealFunctionC11F7DCB"
+       },
+       "\",{\"id\":\"errors\",\"stat\":\"Sum\"}],[{\"label\":\"ErrorRate (%)\",\"expression\":\"(errors / MAX([errors, invocations])) * 100\"}],[\"AWS/Lambda\",\"Duration\",\"FunctionName\",\"",
+       {
+        "Ref": "AiPlannerRealFunctionC11F7DCB"
+       },
+       "\",{\"stat\":\"p95\",\"yAxis\":\"right\"}]],\"yAxis\":{}}},{\"type\":\"metric\",\"width\":8,\"height\":6,\"x\":8,\"y\":6,\"properties\":{\"view\":\"timeSeries\",\"title\":\"Lambda: dashboard-api\",\"region\":\"",
+       {
+        "Ref": "AWS::Region"
+       },
+       "\",\"metrics\":[[\"AWS/Lambda\",\"Invocations\",\"FunctionName\",\"",
+       {
+        "Ref": "DashboardApiRealFunction1A5327D4"
+       },
+       "\",{\"id\":\"invocations\",\"stat\":\"Sum\"}],[\"AWS/Lambda\",\"Errors\",\"FunctionName\",\"",
+       {
+        "Ref": "DashboardApiRealFunction1A5327D4"
+       },
+       "\",{\"id\":\"errors\",\"stat\":\"Sum\"}],[{\"label\":\"ErrorRate (%)\",\"expression\":\"(errors / MAX([errors, invocations])) * 100\"}],[\"AWS/Lambda\",\"Duration\",\"FunctionName\",\"",
+       {
+        "Ref": "DashboardApiRealFunction1A5327D4"
+       },
+       "\",{\"stat\":\"p95\",\"yAxis\":\"right\"}]],\"yAxis\":{}}},{\"type\":\"metric\",\"width\":8,\"height\":6,\"x\":16,\"y\":6,\"properties\":{\"view\":\"timeSeries\",\"title\":\"Lambda: progress-tracker\",\"region\":\"",
+       {
+        "Ref": "AWS::Region"
+       },
+       "\",\"metrics\":[[\"AWS/Lambda\",\"Invocations\",\"FunctionName\",\"",
+       {
+        "Ref": "ProgressTrackerRealFunctionFEC4365F"
+       },
+       "\",{\"id\":\"invocations\",\"stat\":\"Sum\"}],[\"AWS/Lambda\",\"Errors\",\"FunctionName\",\"",
+       {
+        "Ref": "ProgressTrackerRealFunctionFEC4365F"
+       },
+       "\",{\"id\":\"errors\",\"stat\":\"Sum\"}],[{\"label\":\"ErrorRate (%)\",\"expression\":\"(errors / MAX([errors, invocations])) * 100\"}],[\"AWS/Lambda\",\"Duration\",\"FunctionName\",\"",
+       {
+        "Ref": "ProgressTrackerRealFunctionFEC4365F"
+       },
+       "\",{\"stat\":\"p95\",\"yAxis\":\"right\"}]],\"yAxis\":{}}},{\"type\":\"metric\",\"width\":8,\"height\":6,\"x\":0,\"y\":12,\"properties\":{\"view\":\"timeSeries\",\"title\":\"Lambda: search-service\",\"region\":\"",
+       {
+        "Ref": "AWS::Region"
+       },
+       "\",\"metrics\":[[\"AWS/Lambda\",\"Invocations\",\"FunctionName\",\"",
+       {
+        "Ref": "SearchServiceRealFunction6F9B8AC1"
+       },
+       "\",{\"id\":\"invocations\",\"stat\":\"Sum\"}],[\"AWS/Lambda\",\"Errors\",\"FunctionName\",\"",
+       {
+        "Ref": "SearchServiceRealFunction6F9B8AC1"
+       },
+       "\",{\"id\":\"errors\",\"stat\":\"Sum\"}],[{\"label\":\"ErrorRate (%)\",\"expression\":\"(errors / MAX([errors, invocations])) * 100\"}],[\"AWS/Lambda\",\"Duration\",\"FunctionName\",\"",
+       {
+        "Ref": "SearchServiceRealFunction6F9B8AC1"
+       },
+       "\",{\"stat\":\"p95\",\"yAxis\":\"right\"}]],\"yAxis\":{}}},{\"type\":\"metric\",\"width\":12,\"height\":6,\"x\":0,\"y\":18,\"properties\":{\"view\":\"timeSeries\",\"title\":\"API Gateway Errors\",\"region\":\"",
+       {
+        "Ref": "AWS::Region"
+       },
+       "\",\"metrics\":[[\"AWS/ApiGateway\",\"4XXError\",\"ApiName\",\"LearningPathAI-API\",\"Stage\",\"prod\",{\"stat\":\"Sum\"}],[\"AWS/ApiGateway\",\"5XXError\",\"ApiName\",\"LearningPathAI-API\",\"Stage\",\"prod\",{\"stat\":\"Sum\"}]],\"yAxis\":{}}},{\"type\":\"metric\",\"width\":12,\"height\":6,\"x\":0,\"y\":24,\"properties\":{\"view\":\"timeSeries\",\"title\":\"DynamoDB Capacity\",\"region\":\"",
+       {
+        "Ref": "AWS::Region"
+       },
+       "\",\"metrics\":[[\"AWS/DynamoDB\",\"ConsumedReadCapacityUnits\",\"TableName\",\"",
+       {
+        "Ref": "LearningPathAITableBD9B6D96"
+       },
+       "\",{\"stat\":\"Sum\"}],[\"AWS/DynamoDB\",\"ConsumedWriteCapacityUnits\",\"TableName\",\"",
+       {
+        "Ref": "LearningPathAITableBD9B6D96"
+       },
+       "\",{\"stat\":\"Sum\"}]],\"yAxis\":{}}}]}"
+      ]
+     ]
+    },
+    "DashboardName": "LearningPathAI-Dashboard"
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIDashboard/Resource"
+   }
+  },
+  "LearningPathAIAlertsTopic2734107E": {
+   "Type": "AWS::SNS::Topic",
+   "Properties": {
+    "DisplayName": "LearningPath AI Alerts",
+    "TopicName": "LearningPathAI-Alerts"
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIAlertsTopic/Resource"
+   }
+  },
+  "ResourceManagerErrorRateAlarm5B80D0B0": {
+   "Type": "AWS::CloudWatch::Alarm",
+   "Properties": {
+    "AlarmActions": [
+     {
+      "Ref": "LearningPathAIAlertsTopic2734107E"
+     }
+    ],
+    "AlarmDescription": "Lambda error rate > 5% for resource-manager",
+    "AlarmName": "LearningPathAI-resource-manager-ErrorRate",
+    "ComparisonOperator": "GreaterThanThreshold",
+    "EvaluationPeriods": 1,
+    "Metrics": [
+     {
+      "Expression": "(errors / MAX([errors, invocations])) * 100",
+      "Id": "expr_1",
+      "Label": "resource-manager Error Rate (%)",
+      "ReturnData": true
+     },
+     {
+      "Id": "errors",
+      "MetricStat": {
+       "Metric": {
+        "Dimensions": [
+         {
+          "Name": "FunctionName",
+          "Value": {
+           "Ref": "ResourceManagerRealFunction9AE6E647"
+          }
+         }
+        ],
+        "MetricName": "Errors",
+        "Namespace": "AWS/Lambda"
+       },
+       "Period": 300,
+       "Stat": "Sum"
+      },
+      "ReturnData": false
+     },
+     {
+      "Id": "invocations",
+      "MetricStat": {
+       "Metric": {
+        "Dimensions": [
+         {
+          "Name": "FunctionName",
+          "Value": {
+           "Ref": "ResourceManagerRealFunction9AE6E647"
+          }
+         }
+        ],
+        "MetricName": "Invocations",
+        "Namespace": "AWS/Lambda"
+       },
+       "Period": 300,
+       "Stat": "Sum"
+      },
+      "ReturnData": false
+     }
+    ],
+    "Threshold": 5,
+    "TreatMissingData": "notBreaching"
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/ResourceManagerErrorRateAlarm/Resource"
+   }
+  },
+  "AiAnalyzerErrorRateAlarmC7D0A195": {
+   "Type": "AWS::CloudWatch::Alarm",
+   "Properties": {
+    "AlarmActions": [
+     {
+      "Ref": "LearningPathAIAlertsTopic2734107E"
+     }
+    ],
+    "AlarmDescription": "Lambda error rate > 5% for ai-analyzer",
+    "AlarmName": "LearningPathAI-ai-analyzer-ErrorRate",
+    "ComparisonOperator": "GreaterThanThreshold",
+    "EvaluationPeriods": 1,
+    "Metrics": [
+     {
+      "Expression": "(errors / MAX([errors, invocations])) * 100",
+      "Id": "expr_1",
+      "Label": "ai-analyzer Error Rate (%)",
+      "ReturnData": true
+     },
+     {
+      "Id": "errors",
+      "MetricStat": {
+       "Metric": {
+        "Dimensions": [
+         {
+          "Name": "FunctionName",
+          "Value": {
+           "Ref": "AiAnalyzerRealFunction16E4A5FF"
+          }
+         }
+        ],
+        "MetricName": "Errors",
+        "Namespace": "AWS/Lambda"
+       },
+       "Period": 300,
+       "Stat": "Sum"
+      },
+      "ReturnData": false
+     },
+     {
+      "Id": "invocations",
+      "MetricStat": {
+       "Metric": {
+        "Dimensions": [
+         {
+          "Name": "FunctionName",
+          "Value": {
+           "Ref": "AiAnalyzerRealFunction16E4A5FF"
+          }
+         }
+        ],
+        "MetricName": "Invocations",
+        "Namespace": "AWS/Lambda"
+       },
+       "Period": 300,
+       "Stat": "Sum"
+      },
+      "ReturnData": false
+     }
+    ],
+    "Threshold": 5,
+    "TreatMissingData": "notBreaching"
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/AiAnalyzerErrorRateAlarm/Resource"
+   }
+  },
+  "CareerGoalManagerErrorRateAlarm1E1FAEDE": {
+   "Type": "AWS::CloudWatch::Alarm",
+   "Properties": {
+    "AlarmActions": [
+     {
+      "Ref": "LearningPathAIAlertsTopic2734107E"
+     }
+    ],
+    "AlarmDescription": "Lambda error rate > 5% for career-goal-manager",
+    "AlarmName": "LearningPathAI-career-goal-manager-ErrorRate",
+    "ComparisonOperator": "GreaterThanThreshold",
+    "EvaluationPeriods": 1,
+    "Metrics": [
+     {
+      "Expression": "(errors / MAX([errors, invocations])) * 100",
+      "Id": "expr_1",
+      "Label": "career-goal-manager Error Rate (%)",
+      "ReturnData": true
+     },
+     {
+      "Id": "errors",
+      "MetricStat": {
+       "Metric": {
+        "Dimensions": [
+         {
+          "Name": "FunctionName",
+          "Value": {
+           "Ref": "CareerGoalManagerRealFunction944946EA"
+          }
+         }
+        ],
+        "MetricName": "Errors",
+        "Namespace": "AWS/Lambda"
+       },
+       "Period": 300,
+       "Stat": "Sum"
+      },
+      "ReturnData": false
+     },
+     {
+      "Id": "invocations",
+      "MetricStat": {
+       "Metric": {
+        "Dimensions": [
+         {
+          "Name": "FunctionName",
+          "Value": {
+           "Ref": "CareerGoalManagerRealFunction944946EA"
+          }
+         }
+        ],
+        "MetricName": "Invocations",
+        "Namespace": "AWS/Lambda"
+       },
+       "Period": 300,
+       "Stat": "Sum"
+      },
+      "ReturnData": false
+     }
+    ],
+    "Threshold": 5,
+    "TreatMissingData": "notBreaching"
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/CareerGoalManagerErrorRateAlarm/Resource"
+   }
+  },
+  "AiPlannerErrorRateAlarm1619C275": {
+   "Type": "AWS::CloudWatch::Alarm",
+   "Properties": {
+    "AlarmActions": [
+     {
+      "Ref": "LearningPathAIAlertsTopic2734107E"
+     }
+    ],
+    "AlarmDescription": "Lambda error rate > 5% for ai-planner",
+    "AlarmName": "LearningPathAI-ai-planner-ErrorRate",
+    "ComparisonOperator": "GreaterThanThreshold",
+    "EvaluationPeriods": 1,
+    "Metrics": [
+     {
+      "Expression": "(errors / MAX([errors, invocations])) * 100",
+      "Id": "expr_1",
+      "Label": "ai-planner Error Rate (%)",
+      "ReturnData": true
+     },
+     {
+      "Id": "errors",
+      "MetricStat": {
+       "Metric": {
+        "Dimensions": [
+         {
+          "Name": "FunctionName",
+          "Value": {
+           "Ref": "AiPlannerRealFunctionC11F7DCB"
+          }
+         }
+        ],
+        "MetricName": "Errors",
+        "Namespace": "AWS/Lambda"
+       },
+       "Period": 300,
+       "Stat": "Sum"
+      },
+      "ReturnData": false
+     },
+     {
+      "Id": "invocations",
+      "MetricStat": {
+       "Metric": {
+        "Dimensions": [
+         {
+          "Name": "FunctionName",
+          "Value": {
+           "Ref": "AiPlannerRealFunctionC11F7DCB"
+          }
+         }
+        ],
+        "MetricName": "Invocations",
+        "Namespace": "AWS/Lambda"
+       },
+       "Period": 300,
+       "Stat": "Sum"
+      },
+      "ReturnData": false
+     }
+    ],
+    "Threshold": 5,
+    "TreatMissingData": "notBreaching"
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/AiPlannerErrorRateAlarm/Resource"
+   }
+  },
+  "DashboardApiErrorRateAlarmE1338438": {
+   "Type": "AWS::CloudWatch::Alarm",
+   "Properties": {
+    "AlarmActions": [
+     {
+      "Ref": "LearningPathAIAlertsTopic2734107E"
+     }
+    ],
+    "AlarmDescription": "Lambda error rate > 5% for dashboard-api",
+    "AlarmName": "LearningPathAI-dashboard-api-ErrorRate",
+    "ComparisonOperator": "GreaterThanThreshold",
+    "EvaluationPeriods": 1,
+    "Metrics": [
+     {
+      "Expression": "(errors / MAX([errors, invocations])) * 100",
+      "Id": "expr_1",
+      "Label": "dashboard-api Error Rate (%)",
+      "ReturnData": true
+     },
+     {
+      "Id": "errors",
+      "MetricStat": {
+       "Metric": {
+        "Dimensions": [
+         {
+          "Name": "FunctionName",
+          "Value": {
+           "Ref": "DashboardApiRealFunction1A5327D4"
+          }
+         }
+        ],
+        "MetricName": "Errors",
+        "Namespace": "AWS/Lambda"
+       },
+       "Period": 300,
+       "Stat": "Sum"
+      },
+      "ReturnData": false
+     },
+     {
+      "Id": "invocations",
+      "MetricStat": {
+       "Metric": {
+        "Dimensions": [
+         {
+          "Name": "FunctionName",
+          "Value": {
+           "Ref": "DashboardApiRealFunction1A5327D4"
+          }
+         }
+        ],
+        "MetricName": "Invocations",
+        "Namespace": "AWS/Lambda"
+       },
+       "Period": 300,
+       "Stat": "Sum"
+      },
+      "ReturnData": false
+     }
+    ],
+    "Threshold": 5,
+    "TreatMissingData": "notBreaching"
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/DashboardApiErrorRateAlarm/Resource"
+   }
+  },
+  "ProgressTrackerErrorRateAlarmF7C8909A": {
+   "Type": "AWS::CloudWatch::Alarm",
+   "Properties": {
+    "AlarmActions": [
+     {
+      "Ref": "LearningPathAIAlertsTopic2734107E"
+     }
+    ],
+    "AlarmDescription": "Lambda error rate > 5% for progress-tracker",
+    "AlarmName": "LearningPathAI-progress-tracker-ErrorRate",
+    "ComparisonOperator": "GreaterThanThreshold",
+    "EvaluationPeriods": 1,
+    "Metrics": [
+     {
+      "Expression": "(errors / MAX([errors, invocations])) * 100",
+      "Id": "expr_1",
+      "Label": "progress-tracker Error Rate (%)",
+      "ReturnData": true
+     },
+     {
+      "Id": "errors",
+      "MetricStat": {
+       "Metric": {
+        "Dimensions": [
+         {
+          "Name": "FunctionName",
+          "Value": {
+           "Ref": "ProgressTrackerRealFunctionFEC4365F"
+          }
+         }
+        ],
+        "MetricName": "Errors",
+        "Namespace": "AWS/Lambda"
+       },
+       "Period": 300,
+       "Stat": "Sum"
+      },
+      "ReturnData": false
+     },
+     {
+      "Id": "invocations",
+      "MetricStat": {
+       "Metric": {
+        "Dimensions": [
+         {
+          "Name": "FunctionName",
+          "Value": {
+           "Ref": "ProgressTrackerRealFunctionFEC4365F"
+          }
+         }
+        ],
+        "MetricName": "Invocations",
+        "Namespace": "AWS/Lambda"
+       },
+       "Period": 300,
+       "Stat": "Sum"
+      },
+      "ReturnData": false
+     }
+    ],
+    "Threshold": 5,
+    "TreatMissingData": "notBreaching"
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/ProgressTrackerErrorRateAlarm/Resource"
+   }
+  },
+  "SearchServiceErrorRateAlarmB8FBE919": {
+   "Type": "AWS::CloudWatch::Alarm",
+   "Properties": {
+    "AlarmActions": [
+     {
+      "Ref": "LearningPathAIAlertsTopic2734107E"
+     }
+    ],
+    "AlarmDescription": "Lambda error rate > 5% for search-service",
+    "AlarmName": "LearningPathAI-search-service-ErrorRate",
+    "ComparisonOperator": "GreaterThanThreshold",
+    "EvaluationPeriods": 1,
+    "Metrics": [
+     {
+      "Expression": "(errors / MAX([errors, invocations])) * 100",
+      "Id": "expr_1",
+      "Label": "search-service Error Rate (%)",
+      "ReturnData": true
+     },
+     {
+      "Id": "errors",
+      "MetricStat": {
+       "Metric": {
+        "Dimensions": [
+         {
+          "Name": "FunctionName",
+          "Value": {
+           "Ref": "SearchServiceRealFunction6F9B8AC1"
+          }
+         }
+        ],
+        "MetricName": "Errors",
+        "Namespace": "AWS/Lambda"
+       },
+       "Period": 300,
+       "Stat": "Sum"
+      },
+      "ReturnData": false
+     },
+     {
+      "Id": "invocations",
+      "MetricStat": {
+       "Metric": {
+        "Dimensions": [
+         {
+          "Name": "FunctionName",
+          "Value": {
+           "Ref": "SearchServiceRealFunction6F9B8AC1"
+          }
+         }
+        ],
+        "MetricName": "Invocations",
+        "Namespace": "AWS/Lambda"
+       },
+       "Period": 300,
+       "Stat": "Sum"
+      },
+      "ReturnData": false
+     }
+    ],
+    "Threshold": 5,
+    "TreatMissingData": "notBreaching"
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/SearchServiceErrorRateAlarm/Resource"
+   }
+  },
+  "LearningPathAIFrontend": {
+   "Type": "AWS::Amplify::App",
+   "Properties": {
+    "BuildSpec": "version: 1\nfrontend:\n  phases:\n    preBuild:\n      commands:\n        - npm ci\n    build:\n      commands:\n        - npm run build\n  artifacts:\n    baseDirectory: dist\n    files:\n      - '**/*'\n  cache:\n    paths:\n      - node_modules/**/*",
+    "Description": "LearningPath AI React + Vite frontend",
+    "Name": "LearningPathAI-Frontend"
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIFrontend"
+   }
+  },
+  "LearningPathAIMainBranch": {
+   "Type": "AWS::Amplify::Branch",
+   "Properties": {
+    "AppId": {
+     "Fn::GetAtt": [
+      "LearningPathAIFrontend",
+      "AppId"
+     ]
+    },
+    "BranchName": "main",
+    "Description": "Production branch",
+    "EnableAutoBuild": true
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/LearningPathAIMainBranch"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/11Ry1LrMAz9FvaugfLYpzCXDXdupxRYMoqjpr51LOMHnZDJvyM7pXRY6ZwjWZKP5nJ+eykvzmAfZqrZzYyu5fAUQe0ES29D01voqGFxDbVBcbexBYxCQyeHFU1aiUsyWvWZTmgUBrq6ATn8SVZFTTbnTvESfadDYDaKcPUGIWAMssqBuVwktcO4gIACP9Byalilw8CUdwCnW4i4h54zGGLldEke4D06Q33HL7N6wviDbWkzAa6n5BWWSX8xbqnJyQP6zh46H/HDNJklR5YfrmmHtkr8xutP9LnkhK3wPfFaL2B0A5H81O2X9hx4naWBYs6RjGIPm4+5HFh8xbq6exRHxF6R0hCLhYZatuiR2gdPyeWibzwKZSg1e4hqK4d7CNuawJdf/pDKgO/K2hnwRSx3W5PTqpw9A7a8c0Zv+rJM5cqQhQertuP441S5YPZW2zZX/EvRpTiKZc9+2PMreXktb87+B61nPtmoO5SrKX4BJ5GRFZACAAA="
+   },
+   "Metadata": {
+    "aws:cdk:path": "LearningPathAiStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "LearningPathAIApiEndpoint2D2A867D": {
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Ref": "LearningPathAIApiE567CA2F"
+      },
+      ".execute-api.us-east-1.",
+      {
+       "Ref": "AWS::URLSuffix"
+      },
+      "/",
+      {
+       "Ref": "LearningPathAIApiDeploymentStageprodA20D153B"
+      },
+      "/"
+     ]
+    ]
+   }
+  },
+  "ApiGatewayUrl": {
+   "Description": "REST API Gateway endpoint URL",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Ref": "LearningPathAIApiE567CA2F"
+      },
+      ".execute-api.us-east-1.",
+      {
+       "Ref": "AWS::URLSuffix"
+      },
+      "/",
+      {
+       "Ref": "LearningPathAIApiDeploymentStageprodA20D153B"
+      },
+      "/"
+     ]
+    ]
+   },
+   "Export": {
+    "Name": "LearningPathAI-ApiGatewayUrl"
+   }
+  },
+  "AmplifyAppUrl": {
+   "Description": "Amplify frontend application URL (main branch)",
+   "Value": {
+    "Fn::Sub": [
+     "https://main.${AppId}.amplifyapp.com",
+     {
+      "AppId": {
+       "Fn::GetAtt": [
+        "LearningPathAIFrontend",
+        "AppId"
+       ]
+      }
+     }
+    ]
+   },
+   "Export": {
+    "Name": "LearningPathAI-AmplifyAppUrl"
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,121 @@
+/* ============================================================
+   Sidebar — responsive navigation
+   Breakpoints: mobile < 768px, tablet 768px–1279px, desktop ≥ 1280px
+   ============================================================ */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 240px;
+  background: var(--color-sidebar-bg);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  z-index: 200;
+  transition: transform 0.25s ease;
+}
+
+.sidebar__header {
+  padding: 20px 16px 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sidebar__logo {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.sidebar__nav {
+  list-style: none;
+  padding: 12px 8px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: var(--color-text-secondary);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  transition: background 0.15s, color 0.15s;
+  text-decoration: none;
+}
+
+.sidebar__link:hover {
+  background: var(--color-sidebar-item-hover);
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.sidebar__link--active {
+  background: var(--color-sidebar-item-active);
+  color: var(--color-sidebar-item-active-text);
+}
+
+.sidebar__icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.sidebar-overlay {
+  display: none;
+}
+
+/* ---- Mobile (< 768px): sidebar hidden off-screen ---- */
+@media (max-width: 767px) {
+  .sidebar {
+    transform: translateX(-100%);
+    box-shadow: var(--shadow-md);
+  }
+
+  .sidebar--open {
+    transform: translateX(0);
+  }
+
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 199;
+  }
+}
+
+/* ---- Tablet (768px – 1279px): icon-only sidebar ---- */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .sidebar {
+    width: 64px;
+    transform: none;
+  }
+
+  .sidebar__logo {
+    display: none;
+  }
+
+  .sidebar__header {
+    padding: 20px 0 16px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .sidebar__link {
+    justify-content: center;
+    padding: 12px;
+  }
+
+  .sidebar__label {
+    display: none;
+  }
+
+  .sidebar__icon {
+    font-size: 1.25rem;
+  }
+}

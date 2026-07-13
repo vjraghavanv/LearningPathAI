@@ -1,0 +1,130 @@
+.search-page {
+  padding: 1.5rem;
+  max-width: 900px;
+}
+
+.search-page__heading {
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+}
+
+.search-page__form {
+  background: var(--color-surface, #fff);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.search-page__filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.search-page__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.search-page__label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-secondary, #64748b);
+}
+
+.search-page__input,
+.search-page__select {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  background: var(--color-bg, #f8fafc);
+}
+
+.search-page__actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.search-page__btn {
+  padding: 0.6rem 1.25rem;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.search-page__btn--primary {
+  background: var(--color-primary, #3b82f6);
+  color: #fff;
+}
+
+.search-page__btn--secondary {
+  background: transparent;
+  color: var(--color-text-secondary, #64748b);
+  border: 1px solid var(--color-border, #e2e8f0);
+}
+
+.search-page__result-count {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary, #64748b);
+  margin-bottom: 0.75rem;
+}
+
+.search-page__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.search-result-card {
+  background: var(--color-surface, #fff);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: 0.75rem;
+  padding: 1rem;
+}
+
+.search-result-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.search-result-card__title {
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--color-primary, #3b82f6);
+}
+
+.search-result-card__title:hover {
+  text-decoration: underline;
+}
+
+.search-result-card__badges {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.search-result-card__meta {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary, #64748b);
+}
+
+.search-result-card__summary {
+  font-size: 0.9rem;
+  color: var(--color-text, #334155);
+  margin-top: 0.5rem;
+}

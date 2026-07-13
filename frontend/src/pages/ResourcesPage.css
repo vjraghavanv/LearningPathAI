@@ -1,0 +1,354 @@
+/* ============================================================
+   ResourcesPage — Resource Management View
+   ============================================================ */
+
+/* ── Page shell ── */
+
+.resources-page {
+  max-width: 900px;
+}
+
+.resources-page__top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.resources-page__heading {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.resources-page__add-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 20px;
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+
+.resources-page__add-btn:hover {
+  background: var(--color-accent-hover);
+}
+
+.resources-page__refreshing {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 12px;
+}
+
+/* ── Empty state ── */
+
+.resources-page__empty {
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: 12px;
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--color-text-secondary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ── Resource list ── */
+
+.resources-page__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Resource card ── */
+
+.resource-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 20px 24px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  transition: box-shadow 0.15s;
+}
+
+.resource-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.resource-card__main {
+  flex: 1;
+  min-width: 0;
+}
+
+.resource-card__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.resource-card__title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: none;
+  line-height: 1.4;
+  word-break: break-word;
+  flex: 1;
+  min-width: 0;
+}
+
+.resource-card__title:hover {
+  text-decoration: underline;
+}
+
+.resource-card__badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.resource-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.resource-card__type {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
+.resource-card__meta-item {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+.resource-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.resource-card__tag {
+  font-size: 0.75rem;
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  color: var(--color-accent);
+  border-radius: 12px;
+  padding: 2px 10px;
+  font-weight: 500;
+}
+
+.resource-card__summary {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-top: 6px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ── Card action buttons ── */
+
+.resource-card__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.resource-card__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-raised);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+
+.resource-card__btn:hover {
+  background: var(--color-sidebar-item-hover);
+}
+
+.resource-card__btn--delete:hover {
+  background: color-mix(in srgb, var(--color-error) 12%, transparent);
+  color: var(--color-error);
+  border-color: color-mix(in srgb, var(--color-error) 35%, transparent);
+}
+
+/* ── Status badges ── */
+
+.resource-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 12px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+
+.resource-status__icon {
+  font-size: 0.8rem;
+}
+
+.resource-status--not-started {
+  background: var(--color-surface-raised);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+}
+
+.resource-status--in-progress {
+  background: color-mix(in srgb, var(--color-warning) 15%, transparent);
+  color: var(--color-warning);
+  border: 1px solid color-mix(in srgb, var(--color-warning) 30%, transparent);
+}
+
+.resource-status--completed {
+  background: color-mix(in srgb, var(--color-success) 12%, transparent);
+  color: var(--color-success);
+  border: 1px solid color-mix(in srgb, var(--color-success) 30%, transparent);
+}
+
+.resource-status--skipped {
+  background: var(--color-surface-raised);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  text-decoration: line-through;
+}
+
+/* ── Difficulty badges ── */
+
+.resource-difficulty {
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
+.resource-difficulty--beginner {
+  color: var(--color-success);
+  background: color-mix(in srgb, var(--color-success) 12%, transparent);
+}
+
+.resource-difficulty--intermediate {
+  color: var(--color-warning);
+  background: color-mix(in srgb, var(--color-warning) 12%, transparent);
+}
+
+.resource-difficulty--advanced {
+  color: var(--color-error);
+  background: color-mix(in srgb, var(--color-error) 12%, transparent);
+}
+
+/* ── Delete confirmation ── */
+
+.delete-confirm {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-md);
+  max-width: 520px;
+}
+
+.delete-confirm__message {
+  font-size: 0.9375rem;
+  color: var(--color-text-primary);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.delete-confirm__error {
+  font-size: 0.875rem;
+  color: var(--color-error);
+  margin-bottom: 12px;
+}
+
+.delete-confirm__actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.delete-confirm__btn--danger {
+  background: var(--color-error);
+}
+
+.delete-confirm__btn--danger:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--color-error) 85%, #000);
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 768px) {
+  .resource-card {
+    flex-direction: column;
+    padding: 16px 18px;
+  }
+
+  .resource-card__actions {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .resources-page__top-row {
+    margin-bottom: 16px;
+  }
+}
+
+@media (max-width: 375px) {
+  .resources-page__heading {
+    font-size: 1.375rem;
+  }
+
+  .resource-card {
+    padding: 14px 14px;
+  }
+
+  .resources-page__top-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .resources-page__add-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

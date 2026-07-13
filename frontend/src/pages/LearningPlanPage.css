@@ -1,0 +1,355 @@
+/* ============================================================
+   LearningPlanPage — Learning Plan View
+   ============================================================ */
+
+.learning-plan-page {
+  max-width: 860px;
+}
+
+.learning-plan-page__top-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.learning-plan-page__heading {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* ── Empty state ── */
+
+.learning-plan-page__empty {
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: 12px;
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.learning-plan-page__empty-text {
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.learning-plan-page__link {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+.learning-plan-page__link:hover {
+  opacity: 0.8;
+}
+
+/* ── Generate button ── */
+
+.plan-generate {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.plan-generate__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 20px;
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+  white-space: nowrap;
+}
+
+.plan-generate__btn:hover:not(:disabled) {
+  background: var(--color-accent-hover);
+}
+
+.plan-generate__btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.plan-generate__error {
+  font-size: 0.8125rem;
+  color: var(--color-error);
+  max-width: 280px;
+  text-align: right;
+}
+
+/* ── Timeline banner ── */
+
+.plan-timeline-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 25%, transparent);
+  border-radius: 10px;
+  padding: 12px 18px;
+  margin-bottom: 24px;
+  font-size: 0.9375rem;
+  color: var(--color-text-primary);
+  line-height: 1.5;
+}
+
+.plan-timeline-banner__icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+/* ── Sections ── */
+
+.plan-section {
+  margin-bottom: 32px;
+}
+
+.plan-section__heading {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 14px;
+}
+
+.plan-section__empty {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+}
+
+/* ── Daily schedule list ── */
+
+.plan-schedule__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Day card ── */
+
+.plan-day-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 18px 22px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.15s;
+}
+
+.plan-day-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.plan-day-card--today {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-accent) 20%, transparent),
+              var(--shadow-sm);
+}
+
+.plan-day-card__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.plan-day-card__day-badge {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  padding: 3px 12px;
+  color: var(--color-text-primary);
+}
+
+.plan-day-card--today .plan-day-card__day-badge {
+  background: var(--color-accent);
+  color: #fff;
+  border-color: var(--color-accent);
+}
+
+.plan-day-card__today-badge {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.plan-day-card__date {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+/* ── Day card body ── */
+
+.plan-day-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.plan-day-card__resource-id {
+  font-size: 0.9rem;
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.plan-day-card__icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.plan-day-card__resource-label {
+  font-weight: 600;
+}
+
+.plan-day-card__resource-code {
+  font-family: ui-monospace, "SF Mono", Consolas, monospace;
+  font-size: 0.8125rem;
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 1px 6px;
+  color: var(--color-accent);
+  word-break: break-all;
+}
+
+.plan-day-card__duration {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ── Recommendation reason ── */
+
+.plan-day-card__reason {
+  margin: 0;
+  padding: 10px 14px;
+  background: color-mix(in srgb, var(--color-accent) 6%, transparent);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 0 8px 8px 0;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.plan-day-card__reason-icon {
+  flex-shrink: 0;
+  font-size: 1rem;
+  margin-top: 1px;
+}
+
+/* ── Weekly roadmap ── */
+
+.plan-roadmap__list {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.plan-roadmap__item {
+  font-size: 0.9375rem;
+  color: var(--color-text-primary);
+  line-height: 1.6;
+}
+
+/* ── Recommendation lists (projects, certs) ── */
+
+.plan-recommendations__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.plan-recommendations__item {
+  font-size: 0.9375rem;
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.plan-recommendations__item::before {
+  content: "›";
+  color: var(--color-accent);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ── Generated at ── */
+
+.plan-generated-at {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted, var(--color-text-secondary));
+  margin-top: 8px;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 768px) {
+  .learning-plan-page__top-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .plan-generate {
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .plan-generate__btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .plan-generate__error {
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .plan-day-card {
+    padding: 14px 16px;
+  }
+}
+
+@media (max-width: 375px) {
+  .learning-plan-page__heading {
+    font-size: 1.375rem;
+  }
+
+  .plan-day-card {
+    padding: 12px 14px;
+    border-radius: 8px;
+  }
+
+  .plan-section__heading {
+    font-size: 1rem;
+  }
+}

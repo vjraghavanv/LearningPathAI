@@ -1,0 +1,141 @@
+{
+  "version": "54.0.0",
+  "files": {
+    "ccb5606ec309b2ad9657ae49cfe1e5a95f2e9a5698afc3fe90cda9d1c0d1c87a": {
+      "displayName": "AiPlannerRealFunction/Code",
+      "source": {
+        "path": "/Users/vijayaraghavanvashudevan/Documents/aws ug mdu/LearningPath AI/backend",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "current_account-us-east-1-7493aab2": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1",
+          "objectKey": "ccb5606ec309b2ad9657ae49cfe1e5a95f2e9a5698afc3fe90cda9d1c0d1c87a.zip",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-us-east-1"
+        }
+      }
+    },
+    "b83d25a1cd078fecc14ad1c88bc2e809d9ca88bbdcda9da447a63fa7b44e291a": {
+      "displayName": "CareerGoalManagerRealFunction/Code",
+      "source": {
+        "path": "/Users/vijayaraghavanvashudevan/Documents/aws ug mdu/LearningPath AI/backend",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "current_account-us-east-1-ec334eb4": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1",
+          "objectKey": "b83d25a1cd078fecc14ad1c88bc2e809d9ca88bbdcda9da447a63fa7b44e291a.zip",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-us-east-1"
+        }
+      }
+    },
+    "5557c7402cecc184c5c11a6d26fb87de3e2f8b99393199dc39f49559a2d91cab": {
+      "displayName": "AiAnalyzerRealFunction/Code",
+      "source": {
+        "path": "/Users/vijayaraghavanvashudevan/Documents/aws ug mdu/LearningPath AI/backend",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "current_account-us-east-1-c83079ce": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1",
+          "objectKey": "5557c7402cecc184c5c11a6d26fb87de3e2f8b99393199dc39f49559a2d91cab.zip",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-us-east-1"
+        }
+      }
+    },
+    "fbf68d0387123237bad3a302ffcc4c159cf8329dfb2b2467b343b1c5f3f31e47": {
+      "displayName": "ResourceManagerRealFunction/Code",
+      "source": {
+        "path": "/Users/vijayaraghavanvashudevan/Documents/aws ug mdu/LearningPath AI/backend",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "current_account-us-east-1-0ef61d1a": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1",
+          "objectKey": "fbf68d0387123237bad3a302ffcc4c159cf8329dfb2b2467b343b1c5f3f31e47.zip",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-us-east-1"
+        }
+      }
+    },
+    "75d78c2fd210331832f6b4f80eac9f3f6e1102c92dafe7e0aae8f923dbb4a944": {
+      "displayName": "DashboardApiRealFunction/Code",
+      "source": {
+        "path": "/Users/vijayaraghavanvashudevan/Documents/aws ug mdu/LearningPath AI/backend",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "current_account-us-east-1-a82c4d95": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1",
+          "objectKey": "75d78c2fd210331832f6b4f80eac9f3f6e1102c92dafe7e0aae8f923dbb4a944.zip",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-us-east-1"
+        }
+      }
+    },
+    "f5fe0b19f7d1e1c5bb9eaa3f6be544d45b7e94f3ecd54c22692d9a47906e89f4": {
+      "displayName": "ProgressTrackerRealFunction/Code",
+      "source": {
+        "path": "/Users/vijayaraghavanvashudevan/Documents/aws ug mdu/LearningPath AI/backend",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "current_account-us-east-1-b7627867": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1",
+          "objectKey": "f5fe0b19f7d1e1c5bb9eaa3f6be544d45b7e94f3ecd54c22692d9a47906e89f4.zip",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-us-east-1"
+        }
+      }
+    },
+    "1174d8e9dfb496d3698ccfc7d25866c0025b2b30e8704f3c8418d7455761b09d": {
+      "displayName": "SearchServiceRealFunction/Code",
+      "source": {
+        "path": "/Users/vijayaraghavanvashudevan/Documents/aws ug mdu/LearningPath AI/backend",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "current_account-us-east-1-393e94b9": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1",
+          "objectKey": "1174d8e9dfb496d3698ccfc7d25866c0025b2b30e8704f3c8418d7455761b09d.zip",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-us-east-1"
+        }
+      }
+    },
+    "6182c801f33e0b863a6338994dd09c4a15aedb31f4a52f207d4c698a4ffaad4d": {
+      "displayName": "AuthAuthorizerFunction/Code",
+      "source": {
+        "path": "/Users/vijayaraghavanvashudevan/Documents/aws ug mdu/LearningPath AI/backend",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "current_account-us-east-1-dba8e8af": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1",
+          "objectKey": "6182c801f33e0b863a6338994dd09c4a15aedb31f4a52f207d4c698a4ffaad4d.zip",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-us-east-1"
+        }
+      }
+    },
+    "d0ecf351a7ef0178e15676fac7de4008541218cdf91cb13b28c5c5e73d519718": {
+      "displayName": "LearningPathAiStack Template",
+      "source": {
+        "path": "LearningPathAiStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "current_account-us-east-1-664a1a05": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1",
+          "objectKey": "d0ecf351a7ef0178e15676fac7de4008541218cdf91cb13b28c5c5e73d519718.json",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-us-east-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

@@ -1,0 +1,246 @@
+<mxfile host="app.diagrams.net" modified="2026-07-13T00:00:00Z" agent="Kiro" version="21.0.0" type="device">
+  <diagram name="LearningPath AI Flow" id="lp-ai-flow-1">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- TITLE -->
+        <mxCell id="title-bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#1a1a2e;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="title-text" value="LearningPath AI — User Flow &amp; AI Processing Pipeline" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1300" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- ROW 1 LABEL -->
+        <mxCell id="row1-label" value="RESOURCE INGESTION &amp; AI ANALYSIS FLOW" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;fontStyle=1;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="50" y="74" width="400" height="18" as="geometry" />
+        </mxCell>
+
+        <!-- ROW 1: Steps 1-5 -->
+        <mxCell id="s1" value="&lt;b&gt;1. User Adds Resource&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="50" y="100" width="190" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="s1-note" value="Title · URL · Resource Type&#xa;Difficulty · Tags" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="50" y="158" width="190" height="28" as="geometry" />
+        </mxCell>
+
+        <mxCell id="a1" value="" style="shape=mxgraph.arrows2.arrow;fillColor=#f0a30a;strokeColor=#BD7000;perimeter=mxPerimeter.RectanglePerimeter;" vertex="1" parent="1">
+          <mxGeometry x="248" y="115" width="50" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s2" value="&lt;b&gt;2. Resource Manager&lt;/b&gt;&#xa;Lambda" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="306" y="100" width="190" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="s2-note" value="Validates fields&#xa;Persists to DynamoDB" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="306" y="158" width="190" height="28" as="geometry" />
+        </mxCell>
+
+        <mxCell id="a2" value="" style="shape=mxgraph.arrows2.arrow;fillColor=#f0a30a;strokeColor=#BD7000;" vertex="1" parent="1">
+          <mxGeometry x="504" y="115" width="50" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s3" value="&lt;b&gt;3. AI Analyzer&lt;/b&gt;&#xa;Bedrock Nova Lite" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="562" y="100" width="190" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="s3-note" value="Priority Score · Summary&#xa;Skills · Tags · Difficulty" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="562" y="158" width="190" height="28" as="geometry" />
+        </mxCell>
+
+        <mxCell id="a3" value="" style="shape=mxgraph.arrows2.arrow;fillColor=#f0a30a;strokeColor=#BD7000;" vertex="1" parent="1">
+          <mxGeometry x="760" y="115" width="50" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s4" value="&lt;b&gt;4. Saved to DynamoDB&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="818" y="100" width="190" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="s4-note" value="Single table · AI metadata&#xa;merged into record" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="818" y="158" width="190" height="28" as="geometry" />
+        </mxCell>
+
+        <mxCell id="a4" value="" style="shape=mxgraph.arrows2.arrow;fillColor=#f0a30a;strokeColor=#BD7000;" vertex="1" parent="1">
+          <mxGeometry x="1016" y="115" width="50" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s5" value="&lt;b&gt;5. Resource Library&lt;/b&gt;&#xa;Displayed" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1074" y="100" width="190" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="s5-note" value="Cards · AI summary&#xa;Priority · Status · Tags" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="1074" y="158" width="190" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- DIVIDER 1 -->
+        <mxCell id="div1" value="" style="endArrow=none;html=1;dashed=1;dashPattern=6 4;strokeColor=#BBBBBB;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="50" y="200" as="sourcePoint" />
+            <mxPoint x="1340" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ROW 2 LABEL -->
+        <mxCell id="row2-label" value="AI PLANNING &amp; PERSONALISATION FLOW" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;fontStyle=1;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="50" y="208" width="400" height="18" as="geometry" />
+        </mxCell>
+
+        <!-- ROW 2: Steps 6-10 -->
+        <mxCell id="s6" value="&lt;b&gt;6. User Sets Career Goal&lt;/b&gt;&#xa;+ Study Budget" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="50" y="234" width="190" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="s6-note" value="Goal · Skill level&#xa;Weekly hours · Pace" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="50" y="292" width="190" height="28" as="geometry" />
+        </mxCell>
+
+        <mxCell id="a5" value="" style="shape=mxgraph.arrows2.arrow;fillColor=#f0a30a;strokeColor=#BD7000;" vertex="1" parent="1">
+          <mxGeometry x="248" y="249" width="50" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s7" value="&lt;b&gt;7. AI Planner&lt;/b&gt;&#xa;Scores Resources" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="306" y="234" width="190" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="s7-note" value="Priority 0–100 per goal&#xa;+why learn now reason" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="306" y="292" width="190" height="28" as="geometry" />
+        </mxCell>
+
+        <mxCell id="a6" value="" style="shape=mxgraph.arrows2.arrow;fillColor=#f0a30a;strokeColor=#BD7000;" vertex="1" parent="1">
+          <mxGeometry x="504" y="249" width="50" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s8" value="&lt;b&gt;8. Schedule Optimised&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="562" y="234" width="190" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="s8-note" value="Fits weekly study budget&#xa;Skips Completed / Skipped" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="562" y="292" width="190" height="28" as="geometry" />
+        </mxCell>
+
+        <mxCell id="a7" value="" style="shape=mxgraph.arrows2.arrow;fillColor=#f0a30a;strokeColor=#BD7000;" vertex="1" parent="1">
+          <mxGeometry x="760" y="249" width="50" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s9" value="&lt;b&gt;9. Plan Saved&lt;/b&gt;&#xa;to DynamoDB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="818" y="234" width="190" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="s9-note" value="PLAN#active sort key&#xa;Preserved on failure" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="818" y="292" width="190" height="28" as="geometry" />
+        </mxCell>
+
+        <mxCell id="a8" value="" style="shape=mxgraph.arrows2.arrow;fillColor=#f0a30a;strokeColor=#BD7000;" vertex="1" parent="1">
+          <mxGeometry x="1016" y="249" width="50" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s10" value="&lt;b&gt;10. Dashboard Shown&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1074" y="234" width="190" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="s10-note" value="Today's task · Streak · %&#xa;Roadmap · Certs · Projects" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="1074" y="292" width="190" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- DIVIDER 2 -->
+        <mxCell id="div2" value="" style="endArrow=none;html=1;dashed=1;dashPattern=6 4;strokeColor=#BBBBBB;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="50" y="334" as="sourcePoint" />
+            <mxPoint x="1340" y="334" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ROW 3 LABEL -->
+        <mxCell id="row3-label" value="PROGRESS TRACKING &amp; REFRESH FLOW" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;fontStyle=1;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="50" y="342" width="400" height="18" as="geometry" />
+        </mxCell>
+
+        <!-- ROW 3: Steps 11-15 -->
+        <mxCell id="s11" value="&lt;b&gt;11. User Updates&lt;/b&gt;&#xa;Resource Status" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="50" y="368" width="190" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="s11-note" value="Not Started → In Progress&#xa;→ Completed / Skipped" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="50" y="426" width="190" height="28" as="geometry" />
+        </mxCell>
+
+        <mxCell id="a9" value="" style="shape=mxgraph.arrows2.arrow;fillColor=#f0a30a;strokeColor=#BD7000;" vertex="1" parent="1">
+          <mxGeometry x="248" y="383" width="50" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s12" value="&lt;b&gt;12. Progress Tracker&lt;/b&gt;&#xa;Lambda" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="306" y="368" width="190" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="s12-note" value="Ownership check · Persist&#xa;Streak increment · Milestone" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="306" y="426" width="190" height="28" as="geometry" />
+        </mxCell>
+
+        <mxCell id="a10" value="" style="shape=mxgraph.arrows2.arrow;fillColor=#f0a30a;strokeColor=#BD7000;" vertex="1" parent="1">
+          <mxGeometry x="504" y="383" width="50" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s13" value="&lt;b&gt;13. Streak &amp; Milestones&lt;/b&gt;&#xa;Updated" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="562" y="368" width="190" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="s13-note" value="Consecutive days streak&#xa;25/50/75/100% milestones" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="562" y="426" width="190" height="28" as="geometry" />
+        </mxCell>
+
+        <mxCell id="a11" value="" style="shape=mxgraph.arrows2.arrow;fillColor=#f0a30a;strokeColor=#BD7000;" vertex="1" parent="1">
+          <mxGeometry x="760" y="383" width="50" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s14" value="&lt;b&gt;14. AI Planner&lt;/b&gt;&#xa;Regenerates Plan" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="818" y="368" width="190" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="s14-note" value="Excludes completed resources&#xa;Preserves last valid plan" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="818" y="426" width="190" height="28" as="geometry" />
+        </mxCell>
+
+        <mxCell id="a12" value="" style="shape=mxgraph.arrows2.arrow;fillColor=#f0a30a;strokeColor=#BD7000;" vertex="1" parent="1">
+          <mxGeometry x="1016" y="383" width="50" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s15" value="&lt;b&gt;15. Dashboard&lt;/b&gt;&#xa;Auto-Refreshed" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1074" y="368" width="190" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="s15-note" value="Optimistic UI update&#xa;New plan on next load" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="1074" y="426" width="190" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- DIVIDER 3 -->
+        <mxCell id="div3" value="" style="endArrow=none;html=1;dashed=1;dashPattern=6 4;strokeColor=#BBBBBB;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="50" y="468" as="sourcePoint" />
+            <mxPoint x="1340" y="468" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- LEGEND -->
+        <mxCell id="leg-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cccccc;" vertex="1" parent="1">
+          <mxGeometry x="50" y="480" width="580" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-title" value="Legend:" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="62" y="480" width="50" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1-box" value="" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="114" y="492" width="14" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1-txt" value="User / Frontend" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="132" y="490" width="95" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2-box" value="" style="rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="234" y="492" width="14" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2-txt" value="Lambda Function" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="252" y="490" width="95" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg3-box" value="" style="rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="354" y="492" width="14" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="leg3-txt" value="Bedrock / AI Step" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="372" y="490" width="95" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg4-box" value="" style="rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="474" y="492" width="14" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="leg4-txt" value="DynamoDB" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="492" y="490" width="80" height="18" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,121 @@
+.todays-task {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.todays-task__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.todays-task__label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+}
+
+.todays-task__date {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  margin-left: auto;
+}
+
+.todays-task__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.todays-task__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 14px;
+}
+
+.todays-task__meta-icon {
+  font-size: 1rem;
+}
+
+.todays-task__reason {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  background: var(--color-surface-raised);
+  border-left: 3px solid var(--color-accent);
+  padding: 10px 14px;
+  border-radius: 0 6px 6px 0;
+  margin-bottom: 20px;
+}
+
+.todays-task__actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.todays-task__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 20px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  transition: background 0.15s, opacity 0.15s;
+  cursor: pointer;
+}
+
+.todays-task__btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.todays-task__btn--progress {
+  background: var(--color-surface-raised);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+}
+
+.todays-task__btn--progress:hover:not(:disabled) {
+  background: var(--color-sidebar-item-hover);
+}
+
+.todays-task__btn--complete {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.todays-task__btn--complete:hover:not(:disabled) {
+  background: var(--color-accent-hover);
+}
+
+.todays-task__btn--skip {
+  background: transparent;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+}
+
+.todays-task__btn--skip:hover:not(:disabled) {
+  background: var(--color-surface-raised);
+  color: var(--color-text-primary);
+}
+
+.todays-task__error {
+  margin-top: 10px;
+  font-size: 0.875rem;
+  color: var(--color-error);
+}

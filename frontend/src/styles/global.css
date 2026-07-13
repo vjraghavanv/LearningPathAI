@@ -1,0 +1,122 @@
+/* ============================================================
+   CSS Custom Properties — Theme Variables
+   Applied via data-theme attribute on <html>
+   ============================================================ */
+
+:root,
+[data-theme="light"] {
+  --color-bg: #f0f4ff;
+  --color-surface: #ffffff;
+  --color-surface-raised: #e8eeff;
+  --color-border: #c7d2fe;
+  --color-text-primary: #1e1b4b;
+  --color-text-secondary: #6366f1;
+  --color-text-muted: #a5b4fc;
+  --color-accent: #7c3aed;
+  --color-accent-hover: #6d28d9;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-sidebar-bg: #ffffff;
+  --color-sidebar-item-hover: #ede9fe;
+  --color-sidebar-item-active: #ddd6fe;
+  --color-sidebar-item-active-text: #7c3aed;
+  --shadow-sm: 0 1px 3px rgba(124, 58, 237, 0.08);
+  --shadow-md: 0 4px 12px rgba(124, 58, 237, 0.15);
+}
+
+[data-theme="dark"] {
+  --color-bg: #0f0a1e;
+  --color-surface: #1a1333;
+  --color-surface-raised: #261d45;
+  --color-border: #3d2d6e;
+  --color-text-primary: #ede9fe;
+  --color-text-secondary: #a78bfa;
+  --color-text-muted: #5b4a8a;
+  --color-accent: #a78bfa;
+  --color-accent-hover: #c4b5fd;
+  --color-success: #34d399;
+  --color-warning: #fbbf24;
+  --color-error: #f87171;
+  --color-sidebar-bg: #1a1333;
+  --color-sidebar-item-hover: #261d45;
+  --color-sidebar-item-active: #3d2d6e;
+  --color-sidebar-item-active-text: #c4b5fd;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================================
+   Reset & Base
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* ============================================================
+   Typography Scale
+   ============================================================ */
+
+h1 { font-size: 1.75rem; font-weight: 700; line-height: 1.2; }
+h2 { font-size: 1.375rem; font-weight: 600; line-height: 1.3; }
+h3 { font-size: 1.125rem; font-weight: 600; line-height: 1.4; }
+h4 { font-size: 1rem;     font-weight: 600; line-height: 1.4; }
+
+/* ============================================================
+   Utility Classes
+   ============================================================ */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.text-muted { color: var(--color-text-secondary); }
+.text-error  { color: var(--color-error); }
+.text-success{ color: var(--color-success); }
