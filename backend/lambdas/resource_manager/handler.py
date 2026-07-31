@@ -94,17 +94,7 @@ AI_ANALYZER_FUNCTION_NAME: str | None = os.environ.get("AI_ANALYZER_FUNCTION_NAM
 # Helper: extract userId from JWT authorizer context
 # ---------------------------------------------------------------------------
 
-def _get_user_id(event: dict[str, Any]) -> str | None:
-    """
-    Extract the authenticated userId from the API Gateway JWT authorizer context.
-
-    Returns:
-        The user's ``sub`` claim string, or None if not present.
-    """
-    try:
-        return event["requestContext"]["authorizer"]["claims"]["sub"]
-    except (KeyError, TypeError):
-        return None
+from shared.auth import get_user_id as _get_user_id
 
 
 # ---------------------------------------------------------------------------
@@ -317,11 +307,16 @@ def _handle_put(
     Returns the full updated item.
     """
     # --- Fetch existing item ---
-    response = db.get_item(Key={"userId": user_id, "resourceId": resource_id})
+    lookup_id = resource_id
+    response = db.get_item(Key={"userId": user_id, "resourceId": lookup_id})
     existing = response.get("Item")
 
+    if not existing and not resource_id.startswith("RESOURCE#"):
+        lookup_id = f"RESOURCE#{resource_id}"
+        response = db.get_item(Key={"userId": user_id, "resourceId": lookup_id})
+        existing = response.get("Item")
+
     if not existing:
-        # Attempt lookup by just the uuid suffix in case caller passed bare uuid
         return api_response(404, {"error": "NOT_FOUND", "message": "Resource not found."})
 
     # --- Ownership check ---
@@ -361,9 +356,15 @@ def _handle_delete(user_id: str, resource_id: str, db: DynamoDBClient) -> dict[s
 
     Returns 204 No Content on success.
     """
-    # --- Fetch existing item to verify ownership ---
-    response = db.get_item(Key={"userId": user_id, "resourceId": resource_id})
+    # Normalize: try as-is first, then with RESOURCE# prefix
+    lookup_id = resource_id
+    response = db.get_item(Key={"userId": user_id, "resourceId": lookup_id})
     existing = response.get("Item")
+
+    if not existing and not resource_id.startswith("RESOURCE#"):
+        lookup_id = f"RESOURCE#{resource_id}"
+        response = db.get_item(Key={"userId": user_id, "resourceId": lookup_id})
+        existing = response.get("Item")
 
     if not existing:
         return api_response(404, {"error": "NOT_FOUND", "message": "Resource not found."})
@@ -372,7 +373,7 @@ def _handle_delete(user_id: str, resource_id: str, db: DynamoDBClient) -> dict[s
     if existing.get("userId") != user_id:
         return _forbidden_error()
 
-    db.delete_item(Key={"userId": user_id, "resourceId": resource_id})
+    db.delete_item(Key={"userId": user_id, "resourceId": lookup_id})
     return api_response(204, "")
 
 

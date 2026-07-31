@@ -41,11 +41,7 @@ SUPPORTED_FILTER_KEYS: frozenset[str] = frozenset(
 # Helper: extract userId from JWT authorizer context
 # ---------------------------------------------------------------------------
 
-def _get_user_id(event: dict) -> str | None:
-    try:
-        return event["requestContext"]["authorizer"]["claims"]["sub"]
-    except (KeyError, TypeError):
-        return None
+from shared.auth import get_user_id as _get_user_id
 
 
 # ---------------------------------------------------------------------------

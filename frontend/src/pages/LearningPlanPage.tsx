@@ -62,9 +62,10 @@ function isToday(isoDate?: string): boolean {
 
 interface DailyScheduleCardProps {
   entry: DailyScheduleEntry;
+  resourceName?: string;
 }
 
-function DailyScheduleCard({ entry }: DailyScheduleCardProps) {
+function DailyScheduleCard({ entry, resourceName }: DailyScheduleCardProps) {
   const today = isToday(entry.date);
 
   return (
@@ -90,7 +91,7 @@ function DailyScheduleCard({ entry }: DailyScheduleCardProps) {
         <p className="plan-day-card__resource-id" aria-label="Resource">
           <span className="plan-day-card__icon" aria-hidden="true">📖</span>
           <span className="plan-day-card__resource-label">Resource:</span>{" "}
-          <code className="plan-day-card__resource-code">{entry.resourceId}</code>
+          <span className="plan-day-card__resource-code">{resourceName || entry.resourceId}</span>
         </p>
 
         {entry.estimatedDuration && (
@@ -197,14 +198,32 @@ function GeneratePlanButton({ onGenerate, generating, error }: GeneratePlanButto
 
 export function LearningPlanPage() {
   const { data, loading, error, execute, reset } = useApi<LearningPlan>(
-    useCallback(() => apiClient.get<LearningPlan>("/learning-plan"), [])
+    useCallback(async () => {
+      try {
+        return await apiClient.get<LearningPlan>("/learning-plan");
+      } catch (err) {
+        if (err instanceof ApiError && err.statusCode === 404) return null as unknown as LearningPlan;
+        throw err;
+      }
+    }, [])
   );
 
   const [generating, setGenerating] = useState(false);
   const [generateError, setGenerateError] = useState<string | null>(null);
+  const [resourceMap, setResourceMap] = useState<Record<string, string>>({});
 
   useEffect(() => {
     execute();
+    // Fetch resources to resolve IDs to titles
+    apiClient.get<Array<{ resourceId: string; title: string }>>("/resources")
+      .then((resources) => {
+        const map: Record<string, string> = {};
+        for (const r of resources) {
+          map[r.resourceId] = r.title;
+        }
+        setResourceMap(map);
+      })
+      .catch(() => {});
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function handleGenerate() {
@@ -271,7 +290,7 @@ export function LearningPlanPage() {
             ) : (
               <ol className="plan-schedule__list" aria-label="Daily schedule">
                 {data.dailySchedule.map((entry) => (
-                  <DailyScheduleCard key={entry.day} entry={entry} />
+                  <DailyScheduleCard key={entry.day} entry={entry} resourceName={resourceMap[entry.resourceId]} />
                 ))}
               </ol>
             )}

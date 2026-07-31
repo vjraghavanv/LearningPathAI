@@ -60,9 +60,10 @@ def handler(event: dict[str, Any], context: Any) -> dict[str, Any]:
     policy = _build_policy(principal_id=principal_id, effect=effect, resource=method_arn)
 
     # Include a context object so downstream Lambda can read the userId
+    # API Gateway only allows string, number, or boolean values in context (no nested objects)
     policy["context"] = {
         "userId": principal_id if effect == "Allow" else "",
-        "claims": {"sub": principal_id} if effect == "Allow" else {},
+        "sub": principal_id if effect == "Allow" else "",
     }
 
     return policy

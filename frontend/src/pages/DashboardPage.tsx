@@ -190,7 +190,17 @@ export function DashboardPage() {
             label="Complete"
           />
         )}
-        <WeeklyProgressBar entries={display?.weeklyProgress ?? null} />
+        <WeeklyProgressBar entries={
+          display?.weeklyProgress
+            ? Array.isArray(display.weeklyProgress)
+              ? display.weeklyProgress
+              : Object.entries(display.weeklyProgress).map(([day, completed]) => ({
+                  day: day.slice(5), // "07-14" from "2026-07-14"
+                  completed: completed as number,
+                  total: 1,
+                }))
+            : null
+        } />
       </div>
       <LearningTimeline roadmap={display?.roadmap ?? null} />
       <PriorityResources resources={display?.priorityResources ?? []} />

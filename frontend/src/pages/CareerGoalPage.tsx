@@ -410,7 +410,14 @@ function CareerGoalForm({ initialValues, onSubmit, isEditing = false }: CareerGo
 export function CareerGoalPage() {
   const navigate = useNavigate();
   const { data, loading, error, execute, reset } = useApi<CareerGoalProfile>(
-    useCallback(() => apiClient.get<CareerGoalProfile>("/career-goal"), [])
+    useCallback(async () => {
+      try {
+        return await apiClient.get<CareerGoalProfile>("/career-goal");
+      } catch (err) {
+        if (err instanceof ApiError && err.statusCode === 404) return null as unknown as CareerGoalProfile;
+        throw err;
+      }
+    }, [])
   );
 
   useEffect(() => {

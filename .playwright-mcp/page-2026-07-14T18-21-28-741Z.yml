@@ -1,0 +1,29 @@
+- generic [ref=f4e3]:
+  - navigation "Main navigation" [ref=f4e4]:
+    - list [ref=f4e6]:
+      - listitem [ref=f4e7]:
+        - link [ref=f4e8] [cursor=pointer]:
+          - /url: /
+          - generic [ref=f4e9]: 📊
+      - listitem [ref=f4e10]:
+        - link [ref=f4e11] [cursor=pointer]:
+          - /url: /resources
+          - generic [ref=f4e12]: 📚
+      - listitem [ref=f4e13]:
+        - link [ref=f4e14] [cursor=pointer]:
+          - /url: /plan
+          - generic [ref=f4e15]: 🗓️
+      - listitem [ref=f4e16]:
+        - link [ref=f4e17] [cursor=pointer]:
+          - /url: /career
+          - generic [ref=f4e18]: 🎯
+      - listitem [ref=f4e19]:
+        - link [ref=f4e20] [cursor=pointer]:
+          - /url: /search
+          - generic [ref=f4e21]: 🔍
+  - generic [ref=f4e22]:
+    - banner [ref=f4e23]:
+      - generic [ref=f4e24]: LearningPath AI
+      - button "Switch to dark mode" [ref=f4e25] [cursor=pointer]: 🌙
+    - main [ref=f4e26]:
+      - status "Loading learning plan…" [ref=f4e27]

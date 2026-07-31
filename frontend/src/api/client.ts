@@ -55,6 +55,7 @@ function getToken(): string | null {
   return (
     sessionStorage.getItem("lp-ai-token") ??
     localStorage.getItem("lp-ai-token") ??
+    import.meta.env.VITE_DEV_TOKEN ??
     null
   );
 }

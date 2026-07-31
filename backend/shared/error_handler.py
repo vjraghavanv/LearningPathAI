@@ -25,9 +25,20 @@ Usage::
 import functools
 import json
 import time
+from decimal import Decimal
 from typing import Any, Callable
 
 from shared.logger import LambdaLogger, InvocationTimer, make_logger
+
+
+class _DecimalEncoder(json.JSONEncoder):
+    """JSON encoder that converts Decimal to int or float."""
+    def default(self, obj):
+        if isinstance(obj, Decimal):
+            if obj % 1 == 0:
+                return int(obj)
+            return float(obj)
+        return super().default(obj)
 
 # ---------------------------------------------------------------------------
 # Public helpers
@@ -46,12 +57,15 @@ def api_response(status_code: int, body: Any) -> dict:
         the API Gateway Lambda proxy integration contract.
     """
     if not isinstance(body, str):
-        body = json.dumps(body)
+        body = json.dumps(body, cls=_DecimalEncoder)
 
     return {
         "statusCode": status_code,
         "headers": {
             "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token",
+            "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,PATCH,OPTIONS",
         },
         "body": body,
     }

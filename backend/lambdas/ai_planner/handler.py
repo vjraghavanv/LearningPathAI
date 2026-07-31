@@ -61,11 +61,7 @@ def _now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
-def _get_user_id(event: dict) -> str | None:
-    try:
-        return event["requestContext"]["authorizer"]["claims"]["sub"]
-    except (KeyError, TypeError):
-        return None
+from shared.auth import get_user_id as _get_user_id
 
 
 # ---------------------------------------------------------------------------
@@ -150,19 +146,22 @@ def build_planner_prompt(profile: dict, resources: list[dict]) -> str:
 
 def invoke_bedrock_planner(prompt: str, bedrock_client: Any) -> dict | None:
     """Invoke Bedrock and return parsed JSON, or None on any error."""
-    request_body = json.dumps({
-        "messages": [{"role": "user", "content": [{"type": "text", "text": prompt}]}],
-        "inferenceConfig": {"maxTokens": 2048, "temperature": 0.2},
-    })
-
     try:
-        response = bedrock_client.invoke_model(
+        response = bedrock_client.converse(
             modelId=BEDROCK_MODEL_ID,
-            contentType="application/json",
-            accept="application/json",
-            body=request_body,
+            messages=[{"role": "user", "content": [{"text": prompt}]}],
+            inferenceConfig={"maxTokens": 2048, "temperature": 0.2},
         )
-        raw_body = response["body"].read().decode("utf-8")
+        # Extract text from converse response
+        output_message = response.get("output", {}).get("message", {})
+        content_blocks = output_message.get("content", [])
+        text = ""
+        for block in content_blocks:
+            if isinstance(block, dict) and "text" in block:
+                text = block["text"]
+                break
+        if not text:
+            return None
     except (ClientError, Exception) as exc:
         _log.error(json.dumps({
             "level": "ERROR",
@@ -171,21 +170,6 @@ def invoke_bedrock_planner(prompt: str, bedrock_client: Any) -> dict | None:
             "correlationId": get_correlation_id(),
         }))
         return None
-
-    try:
-        envelope = json.loads(raw_body)
-        content_blocks = (
-            envelope.get("output", {}).get("message", {}).get("content", [])
-        )
-        text = ""
-        for block in content_blocks:
-            if isinstance(block, dict) and block.get("type") == "text":
-                text = block.get("text", "")
-                break
-        if not text:
-            text = envelope.get("completion", raw_body)
-    except (json.JSONDecodeError, KeyError):
-        text = raw_body
 
     return _parse_plan_json(text)
 
@@ -320,7 +304,24 @@ def handler(event: dict, context: Any) -> dict:
 
         logger.set_user(user_id)
         db = DynamoDBClient(table_name=TABLE_NAME)
+        http_method = (event.get("httpMethod") or "POST").upper()
 
+        # GET /learning-plan — return existing plan
+        if http_method == "GET":
+            try:
+                plan = fetch_last_plan(user_id, db)
+                if not plan:
+                    return api_response(404, {"error": "NOT_FOUND", "message": "No learning plan generated yet."})
+                duration_ms = timer.elapsed_ms()
+                logger.emit(status_code=200, duration_ms=duration_ms)
+                return api_response(200, plan)
+            except DynamoDBThrottlingError:
+                logger.emit_error(status_code=503, duration_ms=timer.elapsed_ms(),
+                                  error_type="DynamoDBThrottlingError",
+                                  error_message="Service temporarily unavailable.")
+                return api_response(503, {"error": "SERVICE_UNAVAILABLE", "message": "Service temporarily unavailable. Please retry."})
+
+        # POST /learning-plan — generate new plan
         try:
             # Fetch profile and resources (task 6.1)
             profile = fetch_career_goal_profile(user_id, db)

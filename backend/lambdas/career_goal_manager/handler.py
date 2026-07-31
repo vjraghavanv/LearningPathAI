@@ -58,11 +58,7 @@ MAX_WEEKLY_HOURS = 168
 # Helpers
 # ---------------------------------------------------------------------------
 
-def _get_user_id(event: dict) -> str | None:
-    try:
-        return event["requestContext"]["authorizer"]["claims"]["sub"]
-    except (KeyError, TypeError):
-        return None
+from shared.auth import get_user_id as _get_user_id
 
 
 def _parse_body(event: dict) -> dict:
@@ -231,6 +227,13 @@ def handler(event: dict, context: Any) -> dict:
                 result = _handle_post(user_id, body, db)
             elif http_method == "PUT":
                 result = _handle_put(user_id, body, db, lambda_client)
+            elif http_method == "GET":
+                resp = db.get_item(Key={"userId": user_id, "resourceId": CAREER_GOAL_SORT_KEY})
+                item = resp.get("Item")
+                if not item:
+                    result = api_response(404, {"error": "NOT_FOUND", "message": "No career goal set yet."})
+                else:
+                    result = api_response(200, item)
             else:
                 result = api_response(405, {"error": "METHOD_NOT_ALLOWED", "message": f"Method {http_method} not supported."})
         except DynamoDBThrottlingError:

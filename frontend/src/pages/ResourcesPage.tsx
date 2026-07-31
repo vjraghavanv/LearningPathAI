@@ -258,8 +258,9 @@ export function ResourcesPage() {
     if (!editingResource) return;
     setActionError(null);
     try {
+      const editId = editingResource.resourceId.replace(/^RESOURCE#/, "");
       await apiClient.put<Resource>(
-        `/resources/${editingResource.resourceId}`,
+        `/resources/${encodeURIComponent(editId)}`,
         formDataToPayload(formData)
       );
       setView("list");
@@ -281,7 +282,8 @@ export function ResourcesPage() {
     setDeleteInProgress(true);
     setDeleteError(null);
     try {
-      await apiClient.delete(`/resources/${deletingId}`);
+      const id = deletingId.replace(/^RESOURCE#/, "");
+      await apiClient.delete(`/resources/${encodeURIComponent(id)}`);
       setDeletingId(null);
       await execute();
     } catch (err) {

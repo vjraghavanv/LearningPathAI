@@ -120,8 +120,7 @@ def invoke_bedrock(prompt: str, bedrock_client: Any) -> dict[str, Any] | None:
     """
     Invoke Amazon Bedrock Nova Lite with the given prompt and parse the JSON response.
 
-    Uses a 30-second read timeout (configured at the boto3 client level in CDK;
-    here we enforce it at the application level as well).
+    Uses the Converse API which natively supports the messages format.
 
     Args:
         prompt:         The prompt string to send to Bedrock.
@@ -130,31 +129,26 @@ def invoke_bedrock(prompt: str, bedrock_client: Any) -> dict[str, Any] | None:
     Returns:
         Parsed AI metadata dict on success, or None on error / non-JSON response.
     """
-    request_body = json.dumps({
-        "messages": [
-            {
-                "role": "user",
-                "content": [{"type": "text", "text": prompt}],
-            }
-        ],
-        "inferenceConfig": {
-            "maxTokens": 512,
-            "temperature": 0.1,
-        },
-    })
-
     try:
-        response = bedrock_client.invoke_model(
+        response = bedrock_client.converse(
             modelId=BEDROCK_MODEL_ID,
-            contentType="application/json",
-            accept="application/json",
-            body=request_body,
+            messages=[{"role": "user", "content": [{"text": prompt}]}],
+            inferenceConfig={"maxTokens": 512, "temperature": 0.1},
         )
-        raw_body = response["body"].read().decode("utf-8")
+        # Extract text from converse response
+        output_message = response.get("output", {}).get("message", {})
+        content_blocks = output_message.get("content", [])
+        text_content = ""
+        for block in content_blocks:
+            if isinstance(block, dict) and "text" in block:
+                text_content = block["text"]
+                break
+        if not text_content:
+            return None
     except ClientError as exc:
         _log.error(json.dumps({
             "level": "ERROR",
-            "message": "Bedrock ClientError during invoke_model",
+            "message": "Bedrock ClientError during converse",
             "errorType": type(exc).__name__,
             "correlationId": get_correlation_id(),
         }))
@@ -167,26 +161,6 @@ def invoke_bedrock(prompt: str, bedrock_client: Any) -> dict[str, Any] | None:
             "correlationId": get_correlation_id(),
         }))
         return None
-
-    # Parse the Converse/InvokeModel response envelope
-    try:
-        envelope = json.loads(raw_body)
-        # Nova Lite response format: {"output": {"message": {"content": [{"text": "..."}]}}}
-        content_blocks = (
-            envelope.get("output", {})
-                    .get("message", {})
-                    .get("content", [])
-        )
-        text_content = ""
-        for block in content_blocks:
-            if isinstance(block, dict) and block.get("type") == "text":
-                text_content = block.get("text", "")
-                break
-        if not text_content:
-            # Fallback: some versions put text at top level
-            text_content = envelope.get("completion", raw_body)
-    except (json.JSONDecodeError, KeyError):
-        text_content = raw_body
 
     # Parse the actual JSON payload from the model's text response
     return _parse_json_response(text_content)

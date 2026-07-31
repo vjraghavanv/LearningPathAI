@@ -6,6 +6,7 @@ import { ResourcesPage } from "./pages/ResourcesPage";
 import { LearningPlanPage } from "./pages/LearningPlanPage";
 import { CareerGoalPage } from "./pages/CareerGoalPage";
 import { SearchPage } from "./pages/SearchPage";
+import { QuizPage } from "./pages/QuizPage";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
             <Route path="plan" element={<LearningPlanPage />} />
             <Route path="career" element={<CareerGoalPage />} />
             <Route path="search" element={<SearchPage />} />
+            <Route path="quiz" element={<QuizPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

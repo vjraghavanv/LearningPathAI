@@ -5,45 +5,45 @@
 
 :root,
 [data-theme="light"] {
-  --color-bg: #f0f4ff;
+  --color-bg: #faf5ff;
   --color-surface: #ffffff;
-  --color-surface-raised: #e8eeff;
-  --color-border: #c7d2fe;
-  --color-text-primary: #1e1b4b;
-  --color-text-secondary: #6366f1;
-  --color-text-muted: #a5b4fc;
-  --color-accent: #7c3aed;
-  --color-accent-hover: #6d28d9;
-  --color-success: #10b981;
-  --color-warning: #f59e0b;
-  --color-error: #ef4444;
+  --color-surface-raised: #f3e8ff;
+  --color-border: #d8b4fe;
+  --color-text-primary: #1a0533;
+  --color-text-secondary: #7e22ce;
+  --color-text-muted: #a855f7;
+  --color-accent: #9333ea;
+  --color-accent-hover: #7e22ce;
+  --color-success: #16a34a;
+  --color-warning: #ea580c;
+  --color-error: #dc2626;
   --color-sidebar-bg: #ffffff;
-  --color-sidebar-item-hover: #ede9fe;
-  --color-sidebar-item-active: #ddd6fe;
-  --color-sidebar-item-active-text: #7c3aed;
-  --shadow-sm: 0 1px 3px rgba(124, 58, 237, 0.08);
-  --shadow-md: 0 4px 12px rgba(124, 58, 237, 0.15);
+  --color-sidebar-item-hover: #f3e8ff;
+  --color-sidebar-item-active: #e9d5ff;
+  --color-sidebar-item-active-text: #7e22ce;
+  --shadow-sm: 0 2px 4px rgba(147, 51, 234, 0.1);
+  --shadow-md: 0 6px 16px rgba(147, 51, 234, 0.18);
 }
 
 [data-theme="dark"] {
-  --color-bg: #0f0a1e;
-  --color-surface: #1a1333;
-  --color-surface-raised: #261d45;
-  --color-border: #3d2d6e;
-  --color-text-primary: #ede9fe;
-  --color-text-secondary: #a78bfa;
-  --color-text-muted: #5b4a8a;
-  --color-accent: #a78bfa;
-  --color-accent-hover: #c4b5fd;
-  --color-success: #34d399;
-  --color-warning: #fbbf24;
+  --color-bg: #0d001a;
+  --color-surface: #1a0033;
+  --color-surface-raised: #2d0052;
+  --color-border: #581c87;
+  --color-text-primary: #f5f0ff;
+  --color-text-secondary: #c084fc;
+  --color-text-muted: #7e22ce;
+  --color-accent: #a855f7;
+  --color-accent-hover: #c084fc;
+  --color-success: #4ade80;
+  --color-warning: #fb923c;
   --color-error: #f87171;
-  --color-sidebar-bg: #1a1333;
-  --color-sidebar-item-hover: #261d45;
-  --color-sidebar-item-active: #3d2d6e;
-  --color-sidebar-item-active-text: #c4b5fd;
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --color-sidebar-bg: #1a0033;
+  --color-sidebar-item-hover: #2d0052;
+  --color-sidebar-item-active: #581c87;
+  --color-sidebar-item-active-text: #d8b4fe;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.7);
 }
 
 /* ============================================================
@@ -96,10 +96,10 @@ svg {
    Typography Scale
    ============================================================ */
 
-h1 { font-size: 1.75rem; font-weight: 700; line-height: 1.2; }
-h2 { font-size: 1.375rem; font-weight: 600; line-height: 1.3; }
-h3 { font-size: 1.125rem; font-weight: 600; line-height: 1.4; }
-h4 { font-size: 1rem;     font-weight: 600; line-height: 1.4; }
+h1 { font-size: 1.875rem; font-weight: 800; line-height: 1.2; }
+h2 { font-size: 1.5rem; font-weight: 700; line-height: 1.3; }
+h3 { font-size: 1.25rem; font-weight: 700; line-height: 1.4; }
+h4 { font-size: 1.0625rem; font-weight: 700; line-height: 1.4; }
 
 /* ============================================================
    Utility Classes

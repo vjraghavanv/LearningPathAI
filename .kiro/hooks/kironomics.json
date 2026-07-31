@@ -28,7 +28,7 @@
       "description": "Reads Kiro's credit usage and sends session data to the backend when the agent finishes.",
       "action": {
         "type": "command",
-        "command": "python3 \"/Users/vijayaraghavanvashudevan/Documents/aws ug mdu/LearningPath AI/.kiro/kironomics_report.py\" 2>/dev/null; echo ok",
+        "command": "python3 \"/Users/vijayaraghavanvashudevan/Documents/aws ug mdu/LearningPathAI-GitHub/Untitled/LearningPathAI/.kiro/kironomics_report.py\" 2>/dev/null; echo ok",
         "timeout": 10
       }
     }

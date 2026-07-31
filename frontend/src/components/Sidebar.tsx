@@ -12,6 +12,7 @@ const NAV_ITEMS: NavItem[] = [
   { to: "/resources", label: "Resources",    icon: "📚" },
   { to: "/plan",      label: "Learning Plan",icon: "🗓️" },
   { to: "/career",    label: "Career Goal",  icon: "🎯" },
+  { to: "/quiz",      label: "Quiz",         icon: "🧠" },
   { to: "/search",    label: "Search",       icon: "🔍" },
 ];
 

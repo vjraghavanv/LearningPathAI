@@ -19,7 +19,3 @@ frontend:
       headers:
         - key: 'Cache-Control'
           value: 'no-cache'
-  redirects:
-    - source: '</^[^.]+$|\.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|woff2|ttf|map|json)$)([^.]+$)/>'
-      target: '/index.html'
-      status: '200'

@@ -1,0 +1,84 @@
+- generic [ref=f2e3]:
+  - navigation "Main navigation" [ref=f2e4]:
+    - list [ref=f2e6]:
+      - listitem [ref=f2e7]:
+        - link [ref=f2e8] [cursor=pointer]:
+          - /url: /
+          - generic [ref=f2e9]: 📊
+      - listitem [ref=f2e10]:
+        - link [ref=f2e11] [cursor=pointer]:
+          - /url: /resources
+          - generic [ref=f2e12]: 📚
+      - listitem [ref=f2e13]:
+        - link [ref=f2e14] [cursor=pointer]:
+          - /url: /plan
+          - generic [ref=f2e15]: 🗓️
+      - listitem [ref=f2e16]:
+        - link [ref=f2e17] [cursor=pointer]:
+          - /url: /career
+          - generic [ref=f2e18]: 🎯
+      - listitem [ref=f2e19]:
+        - link [ref=f2e20] [cursor=pointer]:
+          - /url: /search
+          - generic [ref=f2e21]: 🔍
+  - generic [ref=f2e22]:
+    - banner [ref=f2e23]:
+      - generic [ref=f2e24]: LearningPath AI
+      - button "Switch to dark mode" [ref=f2e25] [cursor=pointer]: 🌙
+    - main [ref=f2e26]:
+      - generic [ref=f2e30]:
+        - heading "Dashboard" [level=1] [ref=f2e31]
+        - region "No active study streak" [ref=f2e32]:
+          - heading "🔥 Study Streak" [level=2] [ref=f2e34]
+          - generic [ref=f2e35]:
+            - generic [ref=f2e36]: 🔥
+            - generic [ref=f2e37]:
+              - generic [ref=f2e38]: "0"
+              - generic [ref=f2e39]: Start your streak today!
+        - generic [ref=f2e40]:
+          - heading "Progress" [level=2] [ref=f2e41]
+          - generic [ref=f2e42]:
+            - 'img "Complete: 0%" [ref=f2e43]'
+            - generic:
+              - generic: 0%
+              - generic: Complete
+          - list "Weekly progress" [ref=f2e46]:
+            - listitem [ref=f2e47]:
+              - 'generic "07-13: 0 of 1 completed" [ref=f2e48]'
+              - generic [ref=f2e50]: 07-13
+            - listitem [ref=f2e51]:
+              - 'generic "07-14: 0 of 1 completed" [ref=f2e52]'
+              - generic [ref=f2e54]: 07-14
+            - listitem [ref=f2e55]:
+              - 'generic "07-15: 0 of 1 completed" [ref=f2e56]'
+              - generic [ref=f2e58]: 07-15
+            - listitem [ref=f2e59]:
+              - 'generic "07-16: 0 of 1 completed" [ref=f2e60]'
+              - generic [ref=f2e62]: 07-16
+            - listitem [ref=f2e63]:
+              - 'generic "07-17: 0 of 1 completed" [ref=f2e64]'
+              - generic [ref=f2e66]: 07-17
+            - listitem [ref=f2e67]:
+              - 'generic "07-18: 0 of 1 completed" [ref=f2e68]'
+              - generic [ref=f2e70]: 07-18
+            - listitem [ref=f2e71]:
+              - 'generic "07-19: 0 of 1 completed" [ref=f2e72]'
+              - generic [ref=f2e74]: 07-19
+        - region "Learning roadmap" [ref=f2e75]:
+          - heading "📍 Learning Roadmap" [level=2] [ref=f2e76]
+          - paragraph [ref=f2e77]: No roadmap available yet
+        - region "Priority resources" [ref=f2e78]:
+          - heading "🎯 Priority Resources" [level=2] [ref=f2e79]
+          - list "Resource list" [ref=f2e80]:
+            - listitem [ref=f2e81]:
+              - 'link "Open resource: Kiro Learning" [ref=f2e83] [cursor=pointer]':
+                - /url: https://kiro-dev
+                - text: Kiro Learning
+              - generic [ref=f2e84]: Technical Article
+        - region "Certifications and projects" [ref=f2e87]:
+          - generic [ref=f2e88]:
+            - heading "🏅 Certification Recommendations" [level=2] [ref=f2e89]
+            - paragraph [ref=f2e90]: No certification recommendations yet.
+          - generic [ref=f2e91]:
+            - heading "🚀 Recommended Projects" [level=2] [ref=f2e92]
+            - paragraph [ref=f2e93]: No project recommendations yet.
